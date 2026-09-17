@@ -1,0 +1,7 @@
+# robots.txt for PromptForge
+# Everything here is public marketing content — crawl it all.
+User-agent: *
+Allow: /
+Disallow: /404/
+
+Sitemap: https://bhongong.github.io/promptforge-site/sitemap.xml
