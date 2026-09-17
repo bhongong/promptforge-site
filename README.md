@@ -92,9 +92,21 @@ python scripts/lighthouse_report.py /tmp/lh.json
 
 ## Deploy
 
-Push to `main` → `.github/workflows/deploy.yml` installs, builds, runs the verifier, and
-publishes `dist/` to GitHub Pages. Pages must be configured with
-**build_type: workflow** (already set for this repo).
+```bash
+bash scripts/deploy_pages.sh
+```
+
+That script: regenerates `content.json` from the knowledge base → builds → runs the SEO
+verifier → publishes `dist/` to the **`gh-pages`** branch (force push) → writes
+`.nojekyll` so GitHub Pages does not run Jekyll over the `_astro/` asset directory.
+
+GitHub Pages for this repo is configured as **deploy from branch: `gh-pages` / (root)**,
+so the site is served at <https://bhongong.github.io/promptforge-site/>.
+
+An equivalent GitHub Actions pipeline is kept at
+`deploy/github-pages-workflow.yml.disabled`. Rename it back to
+`.github/workflows/deploy.yml` to move to CI-based deploys — this requires the GitHub CLI
+token to carry the `workflow` scope, and Pages must be switched to **build_type: workflow**.
 
 ## Content rules
 
