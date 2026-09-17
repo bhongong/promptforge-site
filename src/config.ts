@@ -47,7 +47,7 @@ export interface Sku {
 }
 
 const gumroad = (slug: string, sku: SkuKey) =>
-  `https://promptforge.gumroad.com/l/${slug}?utm_source=site&utm_medium=cta&utm_campaign=${sku.toLowerCase()}&utm_content=placeholder`;
+  `https://promptforge.gumroad.com/l/${slug}?utm_source=site&utm_medium=cta&utm_campaign=${sku.toLowerCase()}`;
 
 export const SKUS: Record<SkuKey, Sku> = {
   LM: {
