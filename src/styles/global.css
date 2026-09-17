@@ -136,8 +136,36 @@ a:focus-visible {
   text-transform: uppercase;
   letter-spacing: 0.16em;
   font-size: 0.75rem;
-  color: var(--amber);
+  color: var(--amber-dark);
   margin-bottom: 0.75rem;
+}
+
+/* On the dark hero the lighter amber is the accessible choice. */
+.hero .eyebrow {
+  color: var(--amber);
+}
+
+/* Inline links must not rely on colour alone (Lighthouse: link-in-text-block). */
+p a,
+li a,
+td a,
+dd a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.btn,
+.brand,
+.site-nav a,
+.site-footer a {
+  text-decoration: none;
+}
+
+.btn:hover,
+.brand:hover,
+.site-nav a:hover,
+.site-footer a:hover {
+  text-decoration: underline;
 }
 
 .hero-stats {

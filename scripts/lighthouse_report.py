@@ -27,11 +27,17 @@ def main(paths: list[str]) -> int:
             print(f"   {category:<16} {score}{flag}")
             if category == "seo" and score < 90:
                 exit_code = 1
-        for ref in report["categories"]["seo"]["auditRefs"]:
-            audit = report["audits"][ref["id"]]
-            if audit.get("score") is not None and audit["score"] < 1 and audit.get("scoreDisplayMode") != "notApplicable":
-                print(f"   SEO issue: {ref['id']} — {audit.get('title')}")
-                exit_code = 1
+        print("   -- non-perfect audits --")
+        for category in CATEGORIES:
+            if category == "performance":
+                continue
+            for ref in report["categories"][category]["auditRefs"]:
+                audit = report["audits"][ref["id"]]
+                mode = audit.get("scoreDisplayMode")
+                if audit.get("score") is not None and audit["score"] < 1 and mode in ("binary", "numeric"):
+                    print(f"   [{category}] {ref['id']}: {audit.get('title')}")
+                    if category == "seo":
+                        exit_code = 1
     return exit_code
 
 
