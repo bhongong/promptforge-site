@@ -1,0 +1,428 @@
+---
+import Base from '../layouts/Base.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { pov, sd15 } from '../lib/content';
+import { u } from '../lib/routes';
+import { articleSchema, breadcrumbSchema } from '../lib/schema';
+
+const title = 'SD1.5 Cinematic POV Prompts: Hands, Negatives & Hierarchy';
+const description =
+  'Fix broken POV hands in SD1.5: the categorized positive/negative POV dictionary, the 6-step prompt hierarchy, fisheye countermeasures and LoRA weights.';
+
+const samplePositive = [
+  'cinematic still frame, hyper-detailed, ultra-realistic, 8k resolution, sharp focus, masterpiece',
+  'a woman handing a glass of water to the viewer',
+  'POV shot, eye-level close-up, shallow depth of field',
+  'her right arm is extended towards the viewer, perfect 5-fingered hands visible',
+  'softly blurred living room background with a window',
+  'natural window lighting, volumetric sun rays, subtle film grain',
+].join(', ');
+
+const sampleNegative = [
+  ...pov.baseline_negatives,
+  ...pov.anatomy_negatives,
+  ...pov.lens_artifact_negatives,
+  ...pov.composition_negatives,
+  ...pov.lighting_negatives,
+  ...pov.depth_focus_negatives,
+]
+  .filter((term, index, all) => all.indexOf(term) === index)
+  .join(', ');
+
+const dictionaryRows = Object.entries(pov.dictionary).map(([group, buckets]) => ({
+  group,
+  positive: buckets.positive.join(', '),
+  negative: buckets.negative.join(', '),
+}));
+
+const faqs = [
+  {
+    q: 'Why do POV prompts in Stable Diffusion 1.5 produce distorted images?',
+    a: 'Bare "POV" activates wide-angle and fisheye associations from the training captions, so the model stretches geometry and enlarges the hands. The fix is not to remove POV but to counter it: keep the keyword and add wide angle lens, fisheye lens, distorted perspective and warped to the negative prompt.',
+  },
+  {
+    q: 'How do I get hands into a POV prompt without getting a full body?',
+    a: 'Anchor the frame in the viewer position with phrases like "pov hands", "hands in frame" and "her right arm is extended towards the viewer", then exclude the rest of the character with "(full body shot)" and "(character\'s body)" in the negative prompt.',
+  },
+  {
+    q: 'What order should a Stable Diffusion 1.5 prompt be written in?',
+    a: 'Broad to specific: quality and style foundation, subject and action, POV and composition, foreground elements, background and environment, then lighting and mood. SD1.5 has a hard 77-token CLIP limit, so anything past that is silently truncated — put what matters first.',
+  },
+  {
+    q: 'What LoRA weight should I use for a style LoRA?',
+    a: 'Style LoRAs work in the 0.4–0.7 band to prevent style bleed and oversaturation, character or concept LoRAs in the 0.7–1.0 band, and detail LoRAs at 0.3–0.6. Stack two to three LoRAs at most, keep the total weight sum around 1.5, and prefer CFG 6–8 when LoRAs are loaded.',
+  },
+];
+
+const schemas = [
+  articleSchema({
+    headline: title,
+    description,
+    path: '/pov-guide/',
+    section: 'Stable Diffusion 1.5 prompt engineering',
+    keywords: [
+      'stable diffusion POV prompt',
+      'SD1.5 POV hands',
+      'negative prompt POV',
+      'fisheye fix stable diffusion',
+      'cinematic prompt hierarchy',
+      'LoRA weight guide',
+    ],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'SD1.5 POV guide', path: '/pov-guide/' },
+  ]),
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.q,
+      acceptedAnswer: { '@type': 'Answer', text: faq.a },
+    })),
+  },
+];
+---
+<Base title={title} description={description} path="/pov-guide/" ogType="article" schemas={schemas}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › SD1.5 POV guide
+    </nav>
+
+    <article>
+      <p class="eyebrow">Mastered knowledge · Stable Diffusion 1.5</p>
+      <h1>Cinematic POV prompts in Stable Diffusion 1.5: the complete guide</h1>
+      <p class="lead">
+        First-person shots are the fastest way to make an SD1.5 image feel cinematic — and
+        the fastest way to get warped geometry, six-fingered hands and a fisheye lens you
+        never asked for. This guide is the distilled prompt logic that fixes it: keyword
+        mechanics, the categorized positive/negative dictionary, the 6-step hierarchy and
+        the LoRA weights that hold it together.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={u('/prompts/sd15-pov-cinematic/')}>Copy the POV prompt template</a>
+        <a class="btn btn-ghost" href="#dictionary">Jump to the dictionary</a>
+      </div>
+
+      <section id="why">
+        <h2>Why SD1.5 behaves this way</h2>
+        <ul>
+          {pov.framework_facts.map((fact) => <li>{fact}</li>)}
+        </ul>
+        <p class="small muted">
+          The practical consequence: prompt engineering here is not giving orders, it is
+          activating the right learned associations — and staying inside the
+          {sd15.clip_token_limit}-token CLIP budget.
+        </p>
+      </section>
+
+      <section id="keywords">
+        <h2>The POV keywords — and their side effects</h2>
+        <p>
+          These terms are the primary directive that tells the model to build the scene from
+          a first-person standpoint:
+        </p>
+        <p>
+          <code>{pov.pov_keywords.join(' · ')}</code>
+        </p>
+        <p>For Danbooru-tag anime models, add the perspective tags directly:</p>
+        <p>
+          <code>{pov.danbooru_pov_tags.join(' · ')}</code>
+        </p>
+        <h3>The side effects you must counter</h3>
+        <p>
+          A bare POV token drags these artifacts in with it. Every one of them has a
+          negative-prompt countermeasure:
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Side effect</th>
+              <th>Countermeasure</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              pov.pov_side_effects.map((effect) => (
+                <tr>
+                  <td>{effect}</td>
+                  <td>
+                    <code>{pov.lens_artifact_negatives.join(', ')}</code>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </section>
+
+      <section id="dictionary">
+        <h2>The categorized positive / negative dictionary</h2>
+        <p class="muted">
+          Six groups. Use the positive column to build the scene, the negative column to
+          fence it.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Group</th>
+              <th>Positive</th>
+              <th>Negative</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              dictionaryRows.map((row) => (
+                <tr>
+                  <td>{row.group}</td>
+                  <td>
+                    <code>{row.positive}</code>
+                  </td>
+                  <td>
+                    <code>{row.negative}</code>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </section>
+
+      <section id="hierarchy">
+        <h2>The 6-step prompt hierarchy</h2>
+        <p>
+          Assemble broad → specific. This is the order that keeps the important tokens inside
+          the CLIP budget before truncation kicks in.
+        </p>
+        <ol>
+          {pov.hierarchy_steps.map((step) => <li>{step}</li>)}
+        </ol>
+
+        <h3>A worked example</h3>
+        <p class="small muted">
+          Built from the hierarchy above — a "handing a glass of water" POV scene.
+        </p>
+        <h4>Positive</h4>
+        <pre><code>{samplePositive}</code></pre>
+        <h4>Negative</h4>
+        <pre><code>{sampleNegative}</code></pre>
+      </section>
+
+      <section id="anatomy">
+        <h2>Hands and anatomy: what actually shows up</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Goal</th>
+              <th>Positive tokens</th>
+              <th>Negative tokens</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Hands in frame</td>
+              <td>
+                <code>{pov.anatomy_positives.join(', ')}</code>
+              </td>
+              <td>
+                <code>{pov.anatomy_negatives.join(', ')}</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Depth & focus</td>
+              <td>
+                <code>{pov.depth_focus_positives.join(', ')}</code>
+              </td>
+              <td>
+                <code>{pov.depth_focus_negatives.join(', ')}</code>
+              </td>
+            </tr>
+            <tr>
+              <td>Framing</td>
+              <td>
+                <code>{Object.values(pov.composition_shots).join(', ')}</code>
+              </td>
+              <td>
+                <code>{pov.composition_negatives.join(', ')}</code>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="lighting">
+        <h2>Lighting & cinematic vocabulary</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Mood</th>
+              <th>Tokens</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              Object.entries(pov.lighting_terms).map(([mood, terms]) => (
+                <tr>
+                  <td>{mood}</td>
+                  <td>
+                    <code>{terms.join(', ')}</code>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <p>
+          Useful negatives: <code>{pov.lighting_negatives.join(', ')}</code>. Baseline
+          quality/realism tokens: <code>{pov.cinematic_modifiers.join(', ')}</code>.
+        </p>
+      </section>
+
+      <section id="negatives">
+        <h2>Negative-prompt packs (concise beats verbose)</h2>
+        {
+          Object.entries(sd15.negative_packs).map(([name, terms]) => (
+            <div>
+              <h3>{name}</h3>
+              <pre><code>{terms.join(', ')}</code></pre>
+            </div>
+          ))
+        }
+        <p class="small muted">
+          Overloading the negative prompt degrades quality. Start focused, test, then add
+          only the terms that fix a defect you actually observed.
+        </p>
+      </section>
+
+      <section id="lora">
+        <h2>Weighting and LoRA syntax</h2>
+        <h3>Weighted tokens (A1111 / SD.Next compatible)</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Syntax</th>
+              <th>Meaning</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              sd15.weight_rules.map(([syntax, meaning]) => (
+                <tr>
+                  <td>
+                    <code>{syntax}</code>
+                  </td>
+                  <td>{meaning}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <p>
+          Guidance: emphasis <code>{sd15.weight_guidance.emphasis}</code>; strong{' '}
+          <code>{sd15.weight_guidance.strong}</code>; de-emphasis{' '}
+          <code>{sd15.weight_guidance['de-emphasis']}</code>.
+        </p>
+
+        <h3>LoRA</h3>
+        <p>
+          <code>{sd15.lora_syntax}</code> — examples:{' '}
+          <code>{sd15.lora_examples.join(' · ')}</code>
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Guidance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              sd15.lora_guide.map((row) => (
+                <tr>
+                  <td>{row.item}</td>
+                  <td>{row.value}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <ul>
+          {sd15.lora_trigger_words.map((note) => <li>{note}</li>)}
+        </ul>
+        <p class="small muted">
+          Other syntax: embedding <code>{sd15.embedding_syntax}</code> · hypernet{' '}
+          <code>{sd15.hypernet_syntax}</code>. Keep LoRA and checkpoint names generic — these
+          templates work in A1111, ComfyUI and SD.Next.
+        </p>
+      </section>
+
+      <section id="parameters">
+        <h2>Generation parameters that hold the result together</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Proven setting</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              Object.entries(sd15.parameter_guidance).map(([key, value]) => (
+                <tr>
+                  <td>
+                    <code>{key.replace(/_/g, ' ')}</code>
+                  </td>
+                  <td>{value}</td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+        <p class="small muted">
+          Aspect ratios:{' '}
+          {
+            Object.entries(sd15.aspect_ratios)
+              .map(([ratio, res]) => `${ratio} → ${res}`)
+              .join(' · ')
+          }
+        </p>
+      </section>
+
+      <section id="faq">
+        <h2>POV prompt FAQ</h2>
+        {faqs.map((faq) => (
+          <div>
+            <h3>{faq.q}</h3>
+            <p>{faq.a}</p>
+          </div>
+        ))}
+      </section>
+    </article>
+
+    <CtaBlock
+      sku="B1"
+      placement="pov-guide"
+      heading="PromptForge Image Studio — the full SD1.5 POV pack"
+      secondary={['N1', 'P1', 'P2']}
+    />
+
+    <section>
+      <h2>Keep reading</h2>
+      <ul class="list-links">
+        <li><a href={u('/prompts/sd15-pov-cinematic/')}>SD1.5 cinematic POV prompt template</a></li>
+        <li><a href={u('/prompts/sd15-portrait/')}>SD1.5 photoreal portrait template</a></li>
+        <li><a href={u('/prompts/sd15-anime-character/')}>SD1.5 anime (Danbooru) template</a></li>
+        <li><a href={u('/prompts/sd15-lora-style/')}>SD1.5 style LoRA template</a></li>
+        <li><a href={u('/categories/image-sd15/')}>All image prompt templates</a></li>
+        <li><a href={u('/formulas/')}>The 16 prompting formulas</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Free starter pack</h2>
+      <LeadForm placement="pov-guide-lead" id="lead-pov-guide" compact />
+    </section>
+  </div>
+</Base>

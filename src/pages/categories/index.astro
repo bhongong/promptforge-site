@@ -1,0 +1,56 @@
+---
+import Base from '../../layouts/Base.astro';
+import { categories, counts } from '../../lib/content';
+import { u } from '../../lib/routes';
+import { breadcrumbSchema, itemListSchema } from '../../lib/schema';
+
+const title = 'Prompt Categories — PromptForge Library';
+const description = `All ${counts.categories} prompt categories in the PromptForge library: image, system, function, code, writing, analysis, reasoning, marketing, translation and more.`;
+
+const schemas = [
+  itemListSchema(
+    'PromptForge categories',
+    '/categories/',
+    categories.map((c) => ({ name: c.name, path: `/categories/${c.slug}/` })),
+  ),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Categories', path: '/categories/' },
+  ]),
+];
+---
+<Base title={title} description={description} path="/categories/" schemas={schemas}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › Categories
+    </nav>
+    <h1>Prompt categories</h1>
+    <p class="muted">
+      {counts.categories} categories, {counts.prompts} templates. Pick the shape of the work
+      you are doing — the templates inside are already tuned for it.
+    </p>
+
+    <div class="grid">
+      {
+        categories.map((category) => (
+          <article class="card">
+            <h3>
+              <a href={u(`/categories/${category.slug}/`)}>{category.name}</a>
+            </h3>
+            <p>{category.blurb}</p>
+            <p class="small muted">{category.prompt_slugs.length} templates</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <section>
+      <h2>Not sure where to start?</h2>
+      <p>
+        Read the <a href={u('/free-starter-kit/')}>free Starter Kit</a> (5 prompts + 3
+        formulas), or jump straight to the
+        <a href={u('/prompts/sd15-pov-cinematic/')}>SD1.5 cinematic POV template</a>.
+      </p>
+    </section>
+  </div>
+</Base>

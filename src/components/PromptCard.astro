@@ -1,0 +1,22 @@
+---
+import type { Prompt } from '../lib/content';
+import { u } from '../lib/routes';
+
+interface Props {
+  prompt: Prompt;
+  showCategory?: boolean;
+}
+const { prompt, showCategory = true } = Astro.props;
+---
+<article class="card">
+  {
+    showCategory && (
+      <p class="eyebrow" style="margin-bottom:0.35rem">{prompt.category_name}</p>
+    )
+  }
+  <h3><a href={u(prompt.url_path)}>{prompt.title}</a></h3>
+  <p>{prompt.description}</p>
+  <div class="tag-row">
+    {prompt.tags.map((tag) => <span class="tag">{tag}</span>)}
+  </div>
+</article>

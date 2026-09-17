@@ -1,0 +1,54 @@
+---
+import { SKUS, track, SITE, type SkuKey } from '../config';
+import { u } from '../lib/routes';
+
+interface Props {
+  sku: SkuKey;
+  placement: string;
+  heading?: string;
+  body?: string;
+  secondary?: SkuKey[];
+  compact?: boolean;
+}
+
+const { sku, placement, heading, body, secondary = [], compact = false } = Astro.props;
+const primary = SKUS[sku];
+const primaryHref = track(primary.url, placement);
+---
+<aside class="cta-block">
+  {
+    !compact && (
+      <h2>{heading || `Get the ${primary.name}`}</h2>
+    )
+  }
+  {compact && <h3>{heading || primary.name}</h3>}
+  <p>{body || primary.blurb}</p>
+  <p class="small muted">
+    <strong>{primary.price}</strong> · {primary.format}
+    {primary.badge ? ` · ${primary.badge}` : ''}
+  </p>
+  <div class="btn-row">
+    <a class="btn" href={primaryHref} rel="noopener" data-sku={primary.key}>
+      {primary.price === 'Free' ? 'Get the free Starter Kit' : `Buy ${primary.name} — ${primary.price}`}
+    </a>
+    {
+      secondary.map((key) => {
+        const item = SKUS[key];
+        return (
+          <a class="btn btn-ghost" href={track(item.url, `${placement}-${key.toLowerCase()}`)} rel="noopener" data-sku={key}>
+            {item.name} — {item.price}
+          </a>
+        );
+      })
+    }
+    <a class="btn btn-ghost" href={u('/products/')}>Compare all products</a>
+  </div>
+  {
+    !SITE.PLACEHOLDERS_LIVE && (
+      <p class="small muted" style="margin-top:0.75rem">
+        Checkout link is a tracked placeholder until the storefront goes live — it already
+        carries full UTM attribution.
+      </p>
+    )
+  }
+</aside>

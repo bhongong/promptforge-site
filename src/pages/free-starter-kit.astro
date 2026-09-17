@@ -1,0 +1,115 @@
+---
+import Base from '../layouts/Base.astro';
+import LeadForm from '../components/LeadForm.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import { SITE } from '../config';
+import { promptsBySlug, formulasBySlug } from '../lib/content';
+import { u } from '../lib/routes';
+import { breadcrumbSchema } from '../lib/schema';
+
+const title = 'Free Prompt Starter Kit — 5 Prompts + 3 Formulas';
+const description =
+  'Free PromptForge Starter Kit: 5 proven starter prompts, the RTF, Chain-of-Thought and Persona formulas, and the sheet on how to test a prompt.';
+
+const starterPrompts = [
+  'marketing-copy',
+  'writing-article',
+  'system-expert-assistant',
+  'reasoning-math-cot',
+  'education-explainer',
+]
+  .map((slug) => promptsBySlug[slug])
+  .filter(Boolean);
+
+const starterFormulas = ['rtf', 'chain-of-thought', 'persona']
+  .map((slug) => formulasBySlug[slug])
+  .filter(Boolean);
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Free Starter Kit', path: '/free-starter-kit/' },
+  ]),
+];
+---
+<Base title={title} description={description} path="/free-starter-kit/" schemas={schemas}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › Free Starter Kit
+    </nav>
+
+    <p class="eyebrow">Free · no card required</p>
+    <h1>The free PromptForge Starter Kit</h1>
+    <p class="lead">
+      Enough to feel the difference between a prompt that works and a prompt that almost
+      works: five starter templates, three formulas, and the one-page test sheet. Delivered
+      to your inbox.
+    </p>
+
+    <div class="grid-2">
+      <LeadForm placement="starter-kit-page" id="lead-starter-kit" />
+
+      <div>
+        <h2>What's inside</h2>
+        <h3>5 starter prompts</h3>
+        <ul>
+          {
+            starterPrompts.map((prompt) => (
+              <li>
+                <a href={u(prompt.url_path)}>{prompt.title}</a> — {prompt.description}
+              </li>
+            ))
+          }
+        </ul>
+        <h3>3 essential formulas</h3>
+        <ul>
+          {
+            starterFormulas.map((formula) => (
+              <li>
+                <a href={u(formula.url_path)}>{formula.name}</a> — {formula.when_to_use}
+              </li>
+            ))
+          }
+        </ul>
+        <h3>1 test sheet</h3>
+        <p class="muted">
+          The eight robustness rules we check every template against, on one page — so you
+          can score your own prompts before you blame the model.
+        </p>
+      </div>
+    </div>
+
+    {
+      !SITE.leadEndpoint && (
+        <div class="notice">
+          <strong>Preview mode:</strong> the capture form is wired but its endpoint is not
+          configured yet, so nothing is transmitted and no email is stored. Point{' '}
+          <code>SITE.leadEndpoint</code> in <code>site/src/config.ts</code> at a list
+          provider (Buttondown / Kit / Gumroad) to make capture live — the code path is
+          already implemented and tested.
+        </div>
+      )
+    }
+
+    <section>
+      <h2>What happens next</h2>
+      <ol>
+        <li>You get the Starter Kit immediately.</li>
+        <li>
+          One short email on how to turn a starter prompt into a reusable system (template +
+          formula + test sheet).
+        </li>
+        <li>
+          Then occasional, concrete tips. No daily drip, no re-selling you the free pack.
+        </li>
+      </ol>
+    </section>
+
+    <CtaBlock
+      sku="P1"
+      placement="starter-kit-page"
+      heading="Ready for the whole library?"
+      secondary={['P2', 'N1', 'B1']}
+    />
+  </div>
+</Base>

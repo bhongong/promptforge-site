@@ -1,0 +1,1674 @@
+{
+  "generated_at": "2026-09-17T19:49:12+00:00",
+  "source": "H:\\03-services-and-infra\\prompt-engineer",
+  "counts": {
+    "prompts": 32,
+    "categories": 14,
+    "formulas": 16,
+    "robustness_rules": 8
+  },
+  "brand": {
+    "line": "PromptForge",
+    "tagline": "Proven prompts, forged to work.",
+    "master_title": "The PromptForge Library — 30 Proven Prompt Templates Engineered for Real Results"
+  },
+  "categories": [
+    {
+      "slug": "image-sd15",
+      "key": "image-sd15",
+      "name": "Stable Diffusion 1.5 Image Prompts",
+      "blurb": "Proven SD1.5 prompt templates for photoreal, cinematic POV, anime and LoRA styling — with the negative prompts that keep hands and faces intact.",
+      "prompt_slugs": [
+        "sd15-pov-cinematic",
+        "sd15-portrait",
+        "sd15-anime-character",
+        "sd15-lora-style"
+      ]
+    },
+    {
+      "slug": "system-prompt",
+      "key": "system-prompt",
+      "name": "System Prompts",
+      "blurb": "Production system prompts built on the identity / constraints / process / output-contract architecture.",
+      "prompt_slugs": [
+        "system-expert-assistant",
+        "system-support-agent",
+        "system-code-reviewer"
+      ]
+    },
+    {
+      "slug": "function-prompt",
+      "key": "function-prompt",
+      "name": "Function-Calling Prompts",
+      "blurb": "Contract-bound prompts for tool calling, extraction and classification that return parseable output every time.",
+      "prompt_slugs": [
+        "function-json-extractor",
+        "function-classifier",
+        "function-summarizer"
+      ]
+    },
+    {
+      "slug": "code",
+      "key": "code",
+      "name": "Code Prompts",
+      "blurb": "Spec-first coding prompts that state constraints, versions and the tests the answer must satisfy.",
+      "prompt_slugs": [
+        "code-generate-fix",
+        "code-explain"
+      ]
+    },
+    {
+      "slug": "writing",
+      "key": "writing",
+      "name": "Writing Prompts",
+      "blurb": "Long-form and rewrite prompts with voice, structure and preservation rules.",
+      "prompt_slugs": [
+        "writing-article",
+        "writing-rewrite-tone"
+      ]
+    },
+    {
+      "slug": "analysis",
+      "key": "analysis",
+      "name": "Analysis Prompts",
+      "blurb": "Decision-grade analysis prompts: SWOT, weighted comparison and evidence-backed recommendations.",
+      "prompt_slugs": [
+        "analysis-swot",
+        "analysis-pros-cons"
+      ]
+    },
+    {
+      "slug": "reasoning",
+      "key": "reasoning",
+      "name": "Reasoning Prompts",
+      "blurb": "Chain-of-thought, self-check and root-cause prompts for problems that need a correct answer, not a plausible one.",
+      "prompt_slugs": [
+        "reasoning-math-cot",
+        "reasoning-diagnosis"
+      ]
+    },
+    {
+      "slug": "marketing",
+      "key": "marketing",
+      "name": "Marketing Prompts",
+      "blurb": "AIDA copy, positioning and pain-point discovery prompts for campaigns that convert.",
+      "prompt_slugs": [
+        "marketing-copy",
+        "marketing-pain-points"
+      ]
+    },
+    {
+      "slug": "translation",
+      "key": "translation",
+      "name": "Translation Prompts",
+      "blurb": "Meaning-first translation and full localization prompts with register and glossary control.",
+      "prompt_slugs": [
+        "translation-faithful",
+        "translation-localized"
+      ]
+    },
+    {
+      "slug": "education",
+      "key": "education",
+      "name": "Education Prompts",
+      "blurb": "Explainer and assessment prompts that build understanding and check it.",
+      "prompt_slugs": [
+        "education-explainer",
+        "education-quiz"
+      ]
+    },
+    {
+      "slug": "data-extraction",
+      "key": "data-extraction",
+      "name": "Data Extraction Prompts",
+      "blurb": "Table and entity extraction prompts that return verbatim values in a fixed schema.",
+      "prompt_slugs": [
+        "extraction-tables",
+        "extraction-entities"
+      ]
+    },
+    {
+      "slug": "roleplay",
+      "key": "roleplay",
+      "name": "Roleplay Prompts",
+      "blurb": "Character and scenario prompts with explicit in-character contracts.",
+      "prompt_slugs": [
+        "roleplay-character",
+        "roleplay-scenario"
+      ]
+    },
+    {
+      "slug": "agent",
+      "key": "agent",
+      "name": "Agent Prompts",
+      "blurb": "Research and planning prompts for ReAct loops, decomposition and citation-backed answers.",
+      "prompt_slugs": [
+        "agent-researcher",
+        "agent-planner"
+      ]
+    },
+    {
+      "slug": "chat",
+      "key": "chat",
+      "name": "Chat Prompts",
+      "blurb": "Assistant and mentor chat prompts with boundaries against fabrication.",
+      "prompt_slugs": [
+        "chat-friendly-assistant",
+        "chat-mentor"
+      ]
+    }
+  ],
+  "prompts": [
+    {
+      "id": "sd15-pov-cinematic",
+      "slug": "sd15-pov-cinematic",
+      "category_key": "image-sd15",
+      "category_slug": "image-sd15",
+      "category_name": "Stable Diffusion 1.5 Image Prompts",
+      "title": "SD1.5 Cinematic POV scene",
+      "description": "Mastered from the POV generation guide: layered hierarchy + countermeasures.",
+      "template": "{subject_action}, POV shot, eye-level close-up, shallow depth of field, {foreground_hands}, {background}, {lighting}, cinematic still frame, hyper-detailed, ultra-realistic, 8k resolution, sharp focus, masterpiece",
+      "tags": [
+        "sd15",
+        "pov",
+        "cinematic",
+        "hands",
+        "proven"
+      ],
+      "seo_title": "SD1.5 Cinematic POV scene — Prompt Template | PromptForge",
+      "meta_description": "Mastered from the POV generation guide: layered hierarchy + countermeasures. Copy-and-paste ready, with the negative prompt and the checklist to test it.…",
+      "url_path": "/prompts/sd15-pov-cinematic/",
+      "related": [
+        "sd15-portrait",
+        "sd15-anime-character",
+        "sd15-lora-style"
+      ],
+      "related_urls": [
+        "/prompts/sd15-portrait/",
+        "/prompts/sd15-anime-character/",
+        "/prompts/sd15-lora-style/"
+      ]
+    },
+    {
+      "id": "sd15-portrait",
+      "slug": "sd15-portrait",
+      "category_key": "image-sd15",
+      "category_slug": "image-sd15",
+      "category_name": "Stable Diffusion 1.5 Image Prompts",
+      "title": "SD1.5 Photoreal portrait",
+      "description": "Natural-language realism prompt with camera tokens.",
+      "template": "{subject}, 85mm lens, f/1.8, shallow depth of field, soft window lighting, photorealistic, RAW photo, natural skin texture, 8k uhd, sharp focus, best quality",
+      "tags": [
+        "sd15",
+        "portrait",
+        "photoreal"
+      ],
+      "seo_title": "SD1.5 Photoreal portrait — Prompt Template | PromptForge",
+      "meta_description": "Natural-language realism prompt with camera tokens. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/sd15-portrait/",
+      "related": [
+        "sd15-pov-cinematic",
+        "sd15-anime-character",
+        "sd15-lora-style"
+      ],
+      "related_urls": [
+        "/prompts/sd15-pov-cinematic/",
+        "/prompts/sd15-anime-character/",
+        "/prompts/sd15-lora-style/"
+      ]
+    },
+    {
+      "id": "sd15-anime-character",
+      "slug": "sd15-anime-character",
+      "category_key": "image-sd15",
+      "category_slug": "image-sd15",
+      "category_name": "Stable Diffusion 1.5 Image Prompts",
+      "title": "SD1.5 Anime character (Danbooru style)",
+      "description": "Tag-order-correct anime prompt with quality block.",
+      "template": "masterpiece, best quality, amazing quality, very aesthetic, absurdres, 1girl, {character_tags}, {clothing}, {pose}, {scene}, {lighting}, <lora:{lora_name}:{lora_weight}>",
+      "tags": [
+        "sd15",
+        "anime",
+        "danbooru",
+        "lora"
+      ],
+      "seo_title": "SD1.5 Anime character (Danbooru style) — Prompt Template | PromptForge",
+      "meta_description": "Tag-order-correct anime prompt with quality block. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/sd15-anime-character/",
+      "related": [
+        "sd15-pov-cinematic",
+        "sd15-portrait",
+        "sd15-lora-style"
+      ],
+      "related_urls": [
+        "/prompts/sd15-pov-cinematic/",
+        "/prompts/sd15-portrait/",
+        "/prompts/sd15-lora-style/"
+      ]
+    },
+    {
+      "id": "sd15-lora-style",
+      "slug": "sd15-lora-style",
+      "category_key": "image-sd15",
+      "category_slug": "image-sd15",
+      "category_name": "Stable Diffusion 1.5 Image Prompts",
+      "title": "SD1.5 Style LoRA prompt",
+      "description": "Style-LoRA safe template: moderate weight, trigger word, anti-bleed negatives.",
+      "template": "masterpiece, best quality, {style_trigger}, {subject}, {scene}, <lora:{style_lora}:0.6>",
+      "tags": [
+        "sd15",
+        "lora",
+        "style"
+      ],
+      "seo_title": "SD1.5 Style LoRA prompt — Prompt Template | PromptForge",
+      "meta_description": "Style-LoRA safe template: moderate weight, trigger word, anti-bleed negatives. Copy-and-paste ready, with the negative prompt and the checklist to test it.…",
+      "url_path": "/prompts/sd15-lora-style/",
+      "related": [
+        "sd15-pov-cinematic",
+        "sd15-portrait",
+        "sd15-anime-character"
+      ],
+      "related_urls": [
+        "/prompts/sd15-pov-cinematic/",
+        "/prompts/sd15-portrait/",
+        "/prompts/sd15-anime-character/"
+      ]
+    },
+    {
+      "id": "system-expert-assistant",
+      "slug": "system-expert-assistant",
+      "category_key": "system-prompt",
+      "category_slug": "system-prompt",
+      "category_name": "System Prompts",
+      "title": "Expert assistant system prompt",
+      "description": "Full system-prompt architecture: identity, constraints, process, contract.",
+      "template": "You are {expert} with {credentials}.\nConstraints: {tone}; {length}; never {forbidden}.\nProcess: {steps}.\nResponse format: {output_contract}.\nIf information is missing, say 'insufficient context' — never guess.",
+      "tags": [
+        "system",
+        "expert",
+        "architecture"
+      ],
+      "seo_title": "Expert assistant system prompt — Prompt Template | PromptForge",
+      "meta_description": "Full system-prompt architecture: identity, constraints, process, contract. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part…",
+      "url_path": "/prompts/system-expert-assistant/",
+      "related": [
+        "system-support-agent",
+        "system-code-reviewer"
+      ],
+      "related_urls": [
+        "/prompts/system-support-agent/",
+        "/prompts/system-code-reviewer/"
+      ]
+    },
+    {
+      "id": "system-support-agent",
+      "slug": "system-support-agent",
+      "category_key": "system-prompt",
+      "category_slug": "system-prompt",
+      "category_name": "System Prompts",
+      "title": "Customer support agent system prompt",
+      "description": "Support agent with escalation path and empathy rules.",
+      "template": "You are a support agent for {product}.\nTone: warm, concise, jargon-free.\nResolve within {max_steps} steps; escalate to {escalation_route} when {escalation_condition}.\nNever invent policies; quote only from {policy_doc}.",
+      "tags": [
+        "system",
+        "support",
+        "agent"
+      ],
+      "seo_title": "Customer support agent system prompt — Prompt Template | PromptForge",
+      "meta_description": "Support agent with escalation path and empathy rules. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/system-support-agent/",
+      "related": [
+        "system-expert-assistant",
+        "system-code-reviewer",
+        "agent-researcher",
+        "agent-planner"
+      ],
+      "related_urls": [
+        "/prompts/system-expert-assistant/",
+        "/prompts/system-code-reviewer/",
+        "/prompts/agent-researcher/",
+        "/prompts/agent-planner/"
+      ]
+    },
+    {
+      "id": "system-code-reviewer",
+      "slug": "system-code-reviewer",
+      "category_key": "system-prompt",
+      "category_slug": "system-prompt",
+      "category_name": "System Prompts",
+      "title": "Code reviewer system prompt",
+      "description": "Strict reviewer persona with severity rubric and evidence requirement.",
+      "template": "You are a senior code reviewer. Review for {axes}.\nEvery finding: {severity}, {file}:{line} evidence, {fix_suggestion}.\nScore 1-10 with justification. Do not comment on style unless {style_policy}.",
+      "tags": [
+        "system",
+        "code",
+        "review"
+      ],
+      "seo_title": "Code reviewer system prompt — Prompt Template | PromptForge",
+      "meta_description": "Strict reviewer persona with severity rubric and evidence requirement. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of…",
+      "url_path": "/prompts/system-code-reviewer/",
+      "related": [
+        "system-expert-assistant",
+        "system-support-agent",
+        "code-generate-fix",
+        "code-explain"
+      ],
+      "related_urls": [
+        "/prompts/system-expert-assistant/",
+        "/prompts/system-support-agent/",
+        "/prompts/code-generate-fix/",
+        "/prompts/code-explain/"
+      ]
+    },
+    {
+      "id": "function-json-extractor",
+      "slug": "function-json-extractor",
+      "category_key": "function-prompt",
+      "category_slug": "function-prompt",
+      "category_name": "Function-Calling Prompts",
+      "title": "JSON extraction function prompt",
+      "description": "Contract-bound extraction for tool calling.",
+      "template": "Extract fields {fields} from the input. Respond ONLY with valid JSON matching: {schema}. Missing values -> null. No prose, no markdown.",
+      "tags": [
+        "function",
+        "json",
+        "extraction"
+      ],
+      "seo_title": "JSON extraction function prompt — Prompt Template | PromptForge",
+      "meta_description": "Contract-bound extraction for tool calling. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/function-json-extractor/",
+      "related": [
+        "function-classifier",
+        "function-summarizer",
+        "extraction-tables",
+        "extraction-entities"
+      ],
+      "related_urls": [
+        "/prompts/function-classifier/",
+        "/prompts/function-summarizer/",
+        "/prompts/extraction-tables/",
+        "/prompts/extraction-entities/"
+      ]
+    },
+    {
+      "id": "function-classifier",
+      "slug": "function-classifier",
+      "category_key": "function-prompt",
+      "category_slug": "function-prompt",
+      "category_name": "Function-Calling Prompts",
+      "title": "Classification function prompt",
+      "description": "Few-shot classifier with rejection class.",
+      "template": "Classify the input into one of: {classes}.\nExamples:\n{examples}\nIf none fit, return 'unknown'. Output: class label only.",
+      "tags": [
+        "function",
+        "classifier",
+        "few-shot"
+      ],
+      "seo_title": "Classification function prompt — Prompt Template | PromptForge",
+      "meta_description": "Few-shot classifier with rejection class. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/function-classifier/",
+      "related": [
+        "function-json-extractor",
+        "function-summarizer"
+      ],
+      "related_urls": [
+        "/prompts/function-json-extractor/",
+        "/prompts/function-summarizer/"
+      ]
+    },
+    {
+      "id": "function-summarizer",
+      "slug": "function-summarizer",
+      "category_key": "function-prompt",
+      "category_slug": "function-prompt",
+      "category_name": "Function-Calling Prompts",
+      "title": "Summarizer function prompt",
+      "description": "Length-capped, audience-aware summarization.",
+      "template": "Summarize in {n} sentences for {audience}. Preserve {must_keep}. Include key numbers. Omit opinions.",
+      "tags": [
+        "function",
+        "summarize"
+      ],
+      "seo_title": "Summarizer function prompt — Prompt Template | PromptForge",
+      "meta_description": "Length-capped, audience-aware summarization. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/function-summarizer/",
+      "related": [
+        "function-json-extractor",
+        "function-classifier"
+      ],
+      "related_urls": [
+        "/prompts/function-json-extractor/",
+        "/prompts/function-classifier/"
+      ]
+    },
+    {
+      "id": "code-generate-fix",
+      "slug": "code-generate-fix",
+      "category_key": "code",
+      "category_slug": "code",
+      "category_name": "Code Prompts",
+      "title": "Code generation / fix prompt",
+      "description": "Spec-first code task with constraints and verification.",
+      "template": "Task: {task}\nLanguage: {lang}\nConstraints: {constraints}\nTests to satisfy: {tests}\nReturn: complete code + short usage notes. Do not assume APIs; state versions.",
+      "tags": [
+        "code",
+        "generation",
+        "tests"
+      ],
+      "seo_title": "Code generation / fix prompt — Prompt Template | PromptForge",
+      "meta_description": "Spec-first code task with constraints and verification. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/code-generate-fix/",
+      "related": [
+        "code-explain",
+        "system-code-reviewer"
+      ],
+      "related_urls": [
+        "/prompts/code-explain/",
+        "/prompts/system-code-reviewer/"
+      ]
+    },
+    {
+      "id": "code-explain",
+      "slug": "code-explain",
+      "category_key": "code",
+      "category_slug": "code",
+      "category_name": "Code Prompts",
+      "title": "Code explanation prompt",
+      "description": "Structured explanation for learning.",
+      "template": "Explain this code to {audience}: what it does, key patterns, edge cases, and one improvement. {code}",
+      "tags": [
+        "code",
+        "explain",
+        "learning"
+      ],
+      "seo_title": "Code explanation prompt — Prompt Template | PromptForge",
+      "meta_description": "Structured explanation for learning. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Code Prompts set.",
+      "url_path": "/prompts/code-explain/",
+      "related": [
+        "code-generate-fix",
+        "system-code-reviewer",
+        "education-explainer"
+      ],
+      "related_urls": [
+        "/prompts/code-generate-fix/",
+        "/prompts/system-code-reviewer/",
+        "/prompts/education-explainer/"
+      ]
+    },
+    {
+      "id": "writing-article",
+      "slug": "writing-article",
+      "category_key": "writing",
+      "category_slug": "writing",
+      "category_name": "Writing Prompts",
+      "title": "Article / essay writer",
+      "description": "Outline-first long-form writing.",
+      "template": "Write a {word_count}-word article on {topic} for {audience}.\nStructure: hook, {sections}, conclusion with {cta}.\nVoice: {voice}. Cite {sources}.",
+      "tags": [
+        "writing",
+        "article",
+        "seo"
+      ],
+      "seo_title": "Article / essay writer — Prompt Template | PromptForge",
+      "meta_description": "Outline-first long-form writing. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Writing Prompts set.",
+      "url_path": "/prompts/writing-article/",
+      "related": [
+        "writing-rewrite-tone"
+      ],
+      "related_urls": [
+        "/prompts/writing-rewrite-tone/"
+      ]
+    },
+    {
+      "id": "writing-rewrite-tone",
+      "slug": "writing-rewrite-tone",
+      "category_key": "writing",
+      "category_slug": "writing",
+      "category_name": "Writing Prompts",
+      "title": "Rewrite for tone",
+      "description": "Tone-transfer with preservation rules.",
+      "template": "Rewrite the following for {tone} while preserving all facts, names, numbers, and meaning. Do not add content. {text}",
+      "tags": [
+        "writing",
+        "rewrite",
+        "tone"
+      ],
+      "seo_title": "Rewrite for tone — Prompt Template | PromptForge",
+      "meta_description": "Tone-transfer with preservation rules. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Writing Prompts…",
+      "url_path": "/prompts/writing-rewrite-tone/",
+      "related": [
+        "writing-article"
+      ],
+      "related_urls": [
+        "/prompts/writing-article/"
+      ]
+    },
+    {
+      "id": "analysis-swot",
+      "slug": "analysis-swot",
+      "category_key": "analysis",
+      "category_slug": "analysis",
+      "category_name": "Analysis Prompts",
+      "title": "SWOT analysis",
+      "description": "Balanced four-quadrant analysis.",
+      "template": "Produce a SWOT for {subject}: strengths, weaknesses, opportunities, threats. Each with evidence and one action per item.",
+      "tags": [
+        "analysis",
+        "swot",
+        "strategy"
+      ],
+      "seo_title": "SWOT analysis — Prompt Template | PromptForge",
+      "meta_description": "Balanced four-quadrant analysis. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Analysis Prompts set.",
+      "url_path": "/prompts/analysis-swot/",
+      "related": [
+        "analysis-pros-cons"
+      ],
+      "related_urls": [
+        "/prompts/analysis-pros-cons/"
+      ]
+    },
+    {
+      "id": "analysis-pros-cons",
+      "slug": "analysis-pros-cons",
+      "category_key": "analysis",
+      "category_slug": "analysis",
+      "category_name": "Analysis Prompts",
+      "title": "Pros / cons decision matrix",
+      "description": "Weighted decision support.",
+      "template": "Compare {option_a} vs {option_b} across {criteria} with weights. Give a scored table and a recommendation with caveats.",
+      "tags": [
+        "analysis",
+        "decision"
+      ],
+      "seo_title": "Pros / cons decision matrix — Prompt Template | PromptForge",
+      "meta_description": "Weighted decision support. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Analysis Prompts set.",
+      "url_path": "/prompts/analysis-pros-cons/",
+      "related": [
+        "analysis-swot"
+      ],
+      "related_urls": [
+        "/prompts/analysis-swot/"
+      ]
+    },
+    {
+      "id": "reasoning-math-cot",
+      "slug": "reasoning-math-cot",
+      "category_key": "reasoning",
+      "category_slug": "reasoning",
+      "category_name": "Reasoning Prompts",
+      "title": "Math with chain-of-thought",
+      "description": "Step-by-step math with self-check.",
+      "template": "Solve step by step, then verify by plugging the answer back in. {problem}",
+      "tags": [
+        "reasoning",
+        "math",
+        "cot"
+      ],
+      "seo_title": "Math with chain-of-thought — Prompt Template | PromptForge",
+      "meta_description": "Step-by-step math with self-check. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Reasoning Prompts set.",
+      "url_path": "/prompts/reasoning-math-cot/",
+      "related": [
+        "reasoning-diagnosis"
+      ],
+      "related_urls": [
+        "/prompts/reasoning-diagnosis/"
+      ]
+    },
+    {
+      "id": "reasoning-diagnosis",
+      "slug": "reasoning-diagnosis",
+      "category_key": "reasoning",
+      "category_slug": "reasoning",
+      "category_name": "Reasoning Prompts",
+      "title": "Diagnosis tree",
+      "description": "Root-cause reasoning with hypothesis ranking.",
+      "template": "List plausible causes of {symptom}, rank by likelihood, propose the cheapest test for each, and the most probable root cause.",
+      "tags": [
+        "reasoning",
+        "diagnosis",
+        "root-cause"
+      ],
+      "seo_title": "Diagnosis tree — Prompt Template | PromptForge",
+      "meta_description": "Root-cause reasoning with hypothesis ranking. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Reasoning…",
+      "url_path": "/prompts/reasoning-diagnosis/",
+      "related": [
+        "reasoning-math-cot"
+      ],
+      "related_urls": [
+        "/prompts/reasoning-math-cot/"
+      ]
+    },
+    {
+      "id": "marketing-copy",
+      "slug": "marketing-copy",
+      "category_key": "marketing",
+      "category_slug": "marketing",
+      "category_name": "Marketing Prompts",
+      "title": "Marketing copy generator",
+      "description": "AIDA-structured copy.",
+      "template": "Write {format} for {product} targeting {audience}.\nUse AIDA: attention, interest, desire, action.\nInclude one {offer} and a {cta}. Tone: {tone}.",
+      "tags": [
+        "marketing",
+        "copy",
+        "aida"
+      ],
+      "seo_title": "Marketing copy generator — Prompt Template | PromptForge",
+      "meta_description": "AIDA-structured copy. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Marketing Prompts set.",
+      "url_path": "/prompts/marketing-copy/",
+      "related": [
+        "marketing-pain-points"
+      ],
+      "related_urls": [
+        "/prompts/marketing-pain-points/"
+      ]
+    },
+    {
+      "id": "marketing-pain-points",
+      "slug": "marketing-pain-points",
+      "category_key": "marketing",
+      "category_slug": "marketing",
+      "category_name": "Marketing Prompts",
+      "title": "Pain-point discovery",
+      "description": "Empathy-first positioning.",
+      "template": "For {product}, list the top {n} customer pain points with the emotional cost of each and a positioning angle that resolves it.",
+      "tags": [
+        "marketing",
+        "positioning"
+      ],
+      "seo_title": "Pain-point discovery — Prompt Template | PromptForge",
+      "meta_description": "Empathy-first positioning. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Marketing Prompts set.",
+      "url_path": "/prompts/marketing-pain-points/",
+      "related": [
+        "marketing-copy"
+      ],
+      "related_urls": [
+        "/prompts/marketing-copy/"
+      ]
+    },
+    {
+      "id": "translation-faithful",
+      "slug": "translation-faithful",
+      "category_key": "translation",
+      "category_slug": "translation",
+      "category_name": "Translation Prompts",
+      "title": "Faithful translation",
+      "description": "Meaning-first translation with register control.",
+      "template": "Translate to {target_lang} preserving meaning, tone, and register. Keep names and numbers verbatim. Provide a glossary note for culture-specific terms. {text}",
+      "tags": [
+        "translation",
+        "faithful"
+      ],
+      "seo_title": "Faithful translation — Prompt Template | PromptForge",
+      "meta_description": "Meaning-first translation with register control. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge…",
+      "url_path": "/prompts/translation-faithful/",
+      "related": [
+        "translation-localized"
+      ],
+      "related_urls": [
+        "/prompts/translation-localized/"
+      ]
+    },
+    {
+      "id": "translation-localized",
+      "slug": "translation-localized",
+      "category_key": "translation",
+      "category_slug": "translation",
+      "category_name": "Translation Prompts",
+      "title": "Localized adaptation",
+      "description": "Full localization, not literal translation.",
+      "template": "Adapt for {locale}: adjust idioms, units, and cultural references. Flag any term you had to invent. {text}",
+      "tags": [
+        "translation",
+        "localization"
+      ],
+      "seo_title": "Localized adaptation — Prompt Template | PromptForge",
+      "meta_description": "Full localization, not literal translation. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Translation…",
+      "url_path": "/prompts/translation-localized/",
+      "related": [
+        "translation-faithful"
+      ],
+      "related_urls": [
+        "/prompts/translation-faithful/"
+      ]
+    },
+    {
+      "id": "education-explainer",
+      "slug": "education-explainer",
+      "category_key": "education",
+      "category_slug": "education",
+      "category_name": "Education Prompts",
+      "title": "Concept explainer",
+      "description": "Progressive-detail explanation.",
+      "template": "Explain {concept} to {level}. Start with a one-sentence summary, then an analogy, then detail. End with 3 check questions and answers.",
+      "tags": [
+        "education",
+        "explain",
+        "socratic"
+      ],
+      "seo_title": "Concept explainer — Prompt Template | PromptForge",
+      "meta_description": "Progressive-detail explanation. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Education Prompts set.",
+      "url_path": "/prompts/education-explainer/",
+      "related": [
+        "education-quiz",
+        "code-explain",
+        "chat-mentor"
+      ],
+      "related_urls": [
+        "/prompts/education-quiz/",
+        "/prompts/code-explain/",
+        "/prompts/chat-mentor/"
+      ]
+    },
+    {
+      "id": "education-quiz",
+      "slug": "education-quiz",
+      "category_key": "education",
+      "category_slug": "education",
+      "category_name": "Education Prompts",
+      "title": "Quiz generator",
+      "description": "Assessment generation with answer keys.",
+      "template": "Generate {n} {difficulty} questions on {topic} in {format}. Provide an answer key with explanations referencing {source}.",
+      "tags": [
+        "education",
+        "quiz",
+        "assessment"
+      ],
+      "seo_title": "Quiz generator — Prompt Template | PromptForge",
+      "meta_description": "Assessment generation with answer keys. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Education…",
+      "url_path": "/prompts/education-quiz/",
+      "related": [
+        "education-explainer"
+      ],
+      "related_urls": [
+        "/prompts/education-explainer/"
+      ]
+    },
+    {
+      "id": "extraction-tables",
+      "slug": "extraction-tables",
+      "category_key": "data-extraction",
+      "category_slug": "data-extraction",
+      "category_name": "Data Extraction Prompts",
+      "title": "Table extraction",
+      "description": "Structured table extraction from prose.",
+      "template": "Extract all {entities} into a markdown table with columns {columns}. Keep cell values verbatim; mark uncertain cells with '?'.",
+      "tags": [
+        "extraction",
+        "table"
+      ],
+      "seo_title": "Table extraction — Prompt Template | PromptForge",
+      "meta_description": "Structured table extraction from prose. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Data Extraction…",
+      "url_path": "/prompts/extraction-tables/",
+      "related": [
+        "extraction-entities",
+        "function-json-extractor"
+      ],
+      "related_urls": [
+        "/prompts/extraction-entities/",
+        "/prompts/function-json-extractor/"
+      ]
+    },
+    {
+      "id": "extraction-entities",
+      "slug": "extraction-entities",
+      "category_key": "data-extraction",
+      "category_slug": "data-extraction",
+      "category_name": "Data Extraction Prompts",
+      "title": "Entity extraction",
+      "description": "NER-style extraction with types.",
+      "template": "Extract entities of types {types} as JSON: {{entity, type, evidence}}. Only extract spans present in the text.",
+      "tags": [
+        "extraction",
+        "ner",
+        "json"
+      ],
+      "seo_title": "Entity extraction — Prompt Template | PromptForge",
+      "meta_description": "NER-style extraction with types. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Data Extraction…",
+      "url_path": "/prompts/extraction-entities/",
+      "related": [
+        "extraction-tables",
+        "function-json-extractor"
+      ],
+      "related_urls": [
+        "/prompts/extraction-tables/",
+        "/prompts/function-json-extractor/"
+      ]
+    },
+    {
+      "id": "roleplay-character",
+      "slug": "roleplay-character",
+      "category_key": "roleplay",
+      "category_slug": "roleplay",
+      "category_name": "Roleplay Prompts",
+      "title": "Character roleplay",
+      "description": "Consistent-character roleplay contract.",
+      "template": "You are {character} from {universe}. Stay in character: {traits}. React to user actions; never narrate the user's actions. Keep replies under {max_words}.",
+      "tags": [
+        "roleplay",
+        "character"
+      ],
+      "seo_title": "Character roleplay — Prompt Template | PromptForge",
+      "meta_description": "Consistent-character roleplay contract. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Roleplay…",
+      "url_path": "/prompts/roleplay-character/",
+      "related": [
+        "roleplay-scenario"
+      ],
+      "related_urls": [
+        "/prompts/roleplay-scenario/"
+      ]
+    },
+    {
+      "id": "roleplay-scenario",
+      "slug": "roleplay-scenario",
+      "category_key": "roleplay",
+      "category_slug": "roleplay",
+      "category_name": "Roleplay Prompts",
+      "title": "Scenario roleplay",
+      "description": "Immersive scene setup.",
+      "template": "Set the scene: {setting}. You play {your_role}, the user plays {user_role}. Advance the scene only with the user's choices.",
+      "tags": [
+        "roleplay",
+        "scenario"
+      ],
+      "seo_title": "Scenario roleplay — Prompt Template | PromptForge",
+      "meta_description": "Immersive scene setup. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Roleplay Prompts set.",
+      "url_path": "/prompts/roleplay-scenario/",
+      "related": [
+        "roleplay-character"
+      ],
+      "related_urls": [
+        "/prompts/roleplay-character/"
+      ]
+    },
+    {
+      "id": "agent-researcher",
+      "slug": "agent-researcher",
+      "category_key": "agent",
+      "category_slug": "agent",
+      "category_name": "Agent Prompts",
+      "title": "Research agent",
+      "description": "ReAct research loop with citations.",
+      "template": "You are a researcher. For {question}: search, extract evidence with sources, assess reliability, synthesize, and answer with citations. If evidence conflicts, say so.",
+      "tags": [
+        "agent",
+        "research",
+        "react"
+      ],
+      "seo_title": "Research agent — Prompt Template | PromptForge",
+      "meta_description": "ReAct research loop with citations. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Agent Prompts set.",
+      "url_path": "/prompts/agent-researcher/",
+      "related": [
+        "agent-planner",
+        "system-support-agent"
+      ],
+      "related_urls": [
+        "/prompts/agent-planner/",
+        "/prompts/system-support-agent/"
+      ]
+    },
+    {
+      "id": "agent-planner",
+      "slug": "agent-planner",
+      "category_key": "agent",
+      "category_slug": "agent",
+      "category_name": "Agent Prompts",
+      "title": "Task planner",
+      "description": "Plan-and-execute decomposition.",
+      "template": "Decompose {goal} into ordered subtasks with dependencies, acceptance criteria, and estimated effort. Identify risks.",
+      "tags": [
+        "agent",
+        "planning",
+        "decomposition"
+      ],
+      "seo_title": "Task planner — Prompt Template | PromptForge",
+      "meta_description": "Plan-and-execute decomposition. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Agent Prompts set.",
+      "url_path": "/prompts/agent-planner/",
+      "related": [
+        "agent-researcher",
+        "system-support-agent"
+      ],
+      "related_urls": [
+        "/prompts/agent-researcher/",
+        "/prompts/system-support-agent/"
+      ]
+    },
+    {
+      "id": "chat-friendly-assistant",
+      "slug": "chat-friendly-assistant",
+      "category_key": "chat",
+      "category_slug": "chat",
+      "category_name": "Chat Prompts",
+      "title": "Friendly assistant (chat)",
+      "description": "Warm general assistant with boundaries.",
+      "template": "You are a friendly assistant. Be warm and concise. Ask one clarifying question when the request is ambiguous. Never fabricate facts or tools.",
+      "tags": [
+        "chat",
+        "assistant"
+      ],
+      "seo_title": "Friendly assistant (chat) — Prompt Template | PromptForge",
+      "meta_description": "Warm general assistant with boundaries. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Chat Prompts set.",
+      "url_path": "/prompts/chat-friendly-assistant/",
+      "related": [
+        "chat-mentor"
+      ],
+      "related_urls": [
+        "/prompts/chat-mentor/"
+      ]
+    },
+    {
+      "id": "chat-mentor",
+      "slug": "chat-mentor",
+      "category_key": "chat",
+      "category_slug": "chat",
+      "category_name": "Chat Prompts",
+      "title": "Mentor chat",
+      "description": "Socratic mentor.",
+      "template": "You are a mentor. Guide with questions before answers. Praise progress; correct misconceptions kindly.",
+      "tags": [
+        "chat",
+        "mentor",
+        "socratic"
+      ],
+      "seo_title": "Mentor chat — Prompt Template | PromptForge",
+      "meta_description": "Socratic mentor. Copy-and-paste ready, with the negative prompt and the checklist to test it. Part of the PromptForge Chat Prompts set.",
+      "url_path": "/prompts/chat-mentor/",
+      "related": [
+        "chat-friendly-assistant",
+        "education-explainer"
+      ],
+      "related_urls": [
+        "/prompts/chat-friendly-assistant/",
+        "/prompts/education-explainer/"
+      ]
+    }
+  ],
+  "formulas": [
+    {
+      "slug": "co-star",
+      "name": "CO-STAR",
+      "description": "Context, Objective, Style, Tone, Audience, Response — the workhorse formula for production prompts.",
+      "skeleton": "Context: {situation}\nObjective: {goal}\nStyle: {style}\nTone: {tone}\nAudience: {who}\nResponse: {exact format}",
+      "when_to_use": "Any LLM task where business context matters; default for the Master Engineer.",
+      "seo_title": "CO-STAR — Prompting Formula | PromptForge",
+      "meta_description": "Context, Objective, Style, Tone, Audience, Response — the workhorse formula for production prompts. When to use it: Any LLM task where business context…",
+      "url_path": "/formulas/co-star/"
+    },
+    {
+      "slug": "rtf",
+      "name": "RTF",
+      "description": "Role, Task, Format — minimal but powerful; ideal for tool/function prompts.",
+      "skeleton": "You are {role}. Task: {task}. Respond in {format}.",
+      "when_to_use": "Quick, bounded requests; function-calling prompts.",
+      "seo_title": "RTF — Prompting Formula | PromptForge",
+      "meta_description": "Role, Task, Format — minimal but powerful; ideal for tool/function prompts. When to use it: Quick, bounded requests; function-calling prompts. Includes the…",
+      "url_path": "/formulas/rtf/"
+    },
+    {
+      "slug": "crispe",
+      "name": "CRISPE",
+      "description": "Capacity & Role, Insight, Statement, Personality, Experiment — creative and strategy prompts.",
+      "skeleton": "Act as {capacity}. Provide {insight}. The task is: {statement}. Personality: {persona}. Experiment: {how to push boundaries}.",
+      "when_to_use": "Creative writing, strategy, brainstorming, marketing.",
+      "seo_title": "CRISPE — Prompting Formula | PromptForge",
+      "meta_description": "Capacity & Role, Insight, Statement, Personality, Experiment — creative and strategy prompts. When to use it: Creative writing, strategy, brainstorming…",
+      "url_path": "/formulas/crispe/"
+    },
+    {
+      "slug": "tag",
+      "name": "TAG",
+      "description": "Task, Action, Goal — short and goal-anchored.",
+      "skeleton": "Task: {task}. Action: {what the model should do}. Goal: {the outcome}.",
+      "when_to_use": "Crisp one-shot tasks; agent instructions.",
+      "seo_title": "TAG — Prompting Formula | PromptForge",
+      "meta_description": "Task, Action, Goal — short and goal-anchored. When to use it: Crisp one-shot tasks; agent instructions. Includes the copy-paste skeleton. From the…",
+      "url_path": "/formulas/tag/"
+    },
+    {
+      "slug": "few-shot",
+      "name": "Few-shot",
+      "description": "Provide 2-5 exemplars of the exact input/output shape before asking.",
+      "skeleton": "{example 1}\n{example 2}\n...\nNow do it for: {input}",
+      "when_to_use": "Format-sensitive output, classification, style mimicry.",
+      "seo_title": "Few-shot — Prompting Formula | PromptForge",
+      "meta_description": "Provide 2-5 exemplars of the exact input/output shape before asking. When to use it: Format-sensitive output, classification, style mimicry. Includes the…",
+      "url_path": "/formulas/few-shot/"
+    },
+    {
+      "slug": "chain-of-thought",
+      "name": "Chain-of-Thought",
+      "description": "Instruct the model to reason step by step before answering.",
+      "skeleton": "Think step by step, then answer. Show your reasoning.",
+      "when_to_use": "Math, logic, multi-step reasoning; improves accuracy on hard tasks.",
+      "seo_title": "Chain-of-Thought — Prompting Formula | PromptForge",
+      "meta_description": "Instruct the model to reason step by step before answering. When to use it: Math, logic, multi-step reasoning; improves accuracy on hard tasks. Includes the…",
+      "url_path": "/formulas/chain-of-thought/"
+    },
+    {
+      "slug": "zero-shot-cot",
+      "name": "Zero-shot CoT",
+      "description": "The 'Let's think step by step' trigger — cheapest reasoning boost.",
+      "skeleton": "Let's think step by step.",
+      "when_to_use": "Any hard question when no examples are available.",
+      "seo_title": "Zero-shot CoT — Prompting Formula | PromptForge",
+      "meta_description": "The 'Let's think step by step' trigger — cheapest reasoning boost. When to use it: Any hard question when no examples are available. Includes the copy-paste…",
+      "url_path": "/formulas/zero-shot-cot/"
+    },
+    {
+      "slug": "self-consistency",
+      "name": "Self-Consistency",
+      "description": "Sample multiple reasoning paths and take the majority answer.",
+      "skeleton": "Solve this 5 times independently and report the majority conclusion.",
+      "when_to_use": "High-stakes reasoning; reduces variance.",
+      "seo_title": "Self-Consistency — Prompting Formula | PromptForge",
+      "meta_description": "Sample multiple reasoning paths and take the majority answer. When to use it: High-stakes reasoning; reduces variance. Includes the copy-paste skeleton.…",
+      "url_path": "/formulas/self-consistency/"
+    },
+    {
+      "slug": "react",
+      "name": "ReAct",
+      "description": "Reason -> Act -> Observe loop; the foundation of agent prompts.",
+      "skeleton": "You may reason, then call a tool, then observe the result, repeating until done.",
+      "when_to_use": "Agentic tasks with tools; research workflows.",
+      "seo_title": "ReAct — Prompting Formula | PromptForge",
+      "meta_description": "Reason -> Act -> Observe loop; the foundation of agent prompts. When to use it: Agentic tasks with tools; research workflows. Includes the copy-paste…",
+      "url_path": "/formulas/react/"
+    },
+    {
+      "slug": "tree-of-thoughts",
+      "name": "Tree of Thoughts",
+      "description": "Explore multiple branches of reasoning and evaluate each.",
+      "skeleton": "Generate 3 candidate approaches, evaluate each, then commit to the best.",
+      "when_to_use": "Open-ended problem solving, planning.",
+      "seo_title": "Tree of Thoughts — Prompting Formula | PromptForge",
+      "meta_description": "Explore multiple branches of reasoning and evaluate each. When to use it: Open-ended problem solving, planning. Includes the copy-paste skeleton. From the…",
+      "url_path": "/formulas/tree-of-thoughts/"
+    },
+    {
+      "slug": "persona",
+      "name": "Persona",
+      "description": "Assign an expert persona to raise output quality and consistency.",
+      "skeleton": "You are {expert persona} with {credentials}.",
+      "when_to_use": "Domain-expert output; tone control.",
+      "seo_title": "Persona — Prompting Formula | PromptForge",
+      "meta_description": "Assign an expert persona to raise output quality and consistency. When to use it: Domain-expert output; tone control. Includes the copy-paste skeleton. From…",
+      "url_path": "/formulas/persona/"
+    },
+    {
+      "slug": "output-format-contract",
+      "name": "Output Format Contract",
+      "description": "Pin the exact response shape: delimiters, JSON schema, length caps.",
+      "skeleton": "Respond ONLY with valid JSON matching this schema: {schema}. No prose.",
+      "when_to_use": "Programmatic output, extraction, structured data.",
+      "seo_title": "Output Format Contract — Prompting Formula | PromptForge",
+      "meta_description": "Pin the exact response shape: delimiters, JSON schema, length caps. When to use it: Programmatic output, extraction, structured data. Includes the…",
+      "url_path": "/formulas/output-format-contract/"
+    },
+    {
+      "slug": "chain-of-verification",
+      "name": "Chain-of-Verification",
+      "description": "Generate, then verify each claim, then revise.",
+      "skeleton": "Answer, list your factual claims, verify each, and correct the answer.",
+      "when_to_use": "Fact-sensitive answers; hallucination reduction.",
+      "seo_title": "Chain-of-Verification — Prompting Formula | PromptForge",
+      "meta_description": "Generate, then verify each claim, then revise. When to use it: Fact-sensitive answers; hallucination reduction. Includes the copy-paste skeleton. From the…",
+      "url_path": "/formulas/chain-of-verification/"
+    },
+    {
+      "slug": "step-back",
+      "name": "Step-Back",
+      "description": "Ask for the high-level principle first, then apply it.",
+      "skeleton": "What is the general principle here? Then use it to solve: {problem}.",
+      "when_to_use": "Hard problems where models rush to details.",
+      "seo_title": "Step-Back — Prompting Formula | PromptForge",
+      "meta_description": "Ask for the high-level principle first, then apply it. When to use it: Hard problems where models rush to details. Includes the copy-paste skeleton. From…",
+      "url_path": "/formulas/step-back/"
+    },
+    {
+      "slug": "positive-instruction-negative-boundary",
+      "name": "Positive Instruction + Negative Boundary",
+      "description": "State what to do, then what NOT to do — the prompt-side twin of SD negative prompts.",
+      "skeleton": "Do: {desired}. Never: {forbidden}. If unsure, say 'insufficient context'.",
+      "when_to_use": "Safety, style control, compliance.",
+      "seo_title": "Positive Instruction + Negative Boundary — Prompting Formula | PromptForge",
+      "meta_description": "State what to do, then what NOT to do — the prompt-side twin of SD negative prompts. When to use it: Safety, style control, compliance. Includes the…",
+      "url_path": "/formulas/positive-instruction-negative-boundary/"
+    },
+    {
+      "slug": "system-prompt-architect",
+      "name": "System Prompt Architect",
+      "description": "System: role + constraints + knowledge + process; User: task + context.",
+      "skeleton": "SYSTEM: {identity, constraints, process, output contract}\nUSER: {task, context, examples}",
+      "when_to_use": "Any fine-tuned system prompt; the Master Engineer's signature output.",
+      "seo_title": "System Prompt Architect — Prompting Formula | PromptForge",
+      "meta_description": "System: role + constraints + knowledge + process; User: task + context. When to use it: Any fine-tuned system prompt; the Master Engineer's signature…",
+      "url_path": "/formulas/system-prompt-architect/"
+    }
+  ],
+  "robustness_rules": [
+    "Ground every factual claim; cite sources when available.",
+    "Distinguish 'known', 'inferred', and 'assumed' — never blur them.",
+    "Say 'insufficient context' instead of guessing.",
+    "Keep instructions unambiguous: one action per sentence where possible.",
+    "Prefer concrete, testable criteria over adjectives.",
+    "Specify the audience and the desired response format explicitly.",
+    "Add few-shot exemplars for any non-trivial output shape.",
+    "Budget context: put the most important instructions first."
+  ],
+  "system_prompt_architecture": {
+    "identity": "Who the model is, credentials, and domain.",
+    "constraints": "Hard rules: tone, length, safety, format.",
+    "knowledge": "What knowledge to rely on; what is out of scope.",
+    "process": "The step-by-step method to follow for each task.",
+    "output_contract": "Exact response shape: format, schema, delimiters.",
+    "examples": "Few-shot exemplars inline when the format is unusual."
+  },
+  "pov": {
+    "framework_facts": [
+      "SD1.5 is a latent text-to-image diffusion model: CLIP text encoder -> U-Net denoising in latent space -> VAE decode to pixels.",
+      "The CLIP text encoder (ViT-L/14) has a hard 77-token limit; anything beyond is silently truncated. Concise prompts beat verbose 'word salads'.",
+      "SD1.5 has no innate concept of perspective or anatomy; it activates statistical associations between words and visual features learned from training data.",
+      "A keyword only works if it was strongly correlated with the desired visual outcome in the training data (e.g. 'POV' works because such images were captioned).",
+      "The negative prompt is processed like a positive prompt; CFG pushes the image away from the negative description."
+    ],
+    "pov_keywords": [
+      "POV",
+      "point of view",
+      "first person view",
+      "first person perspective",
+      "FPV"
+    ],
+    "danbooru_pov_tags": [
+      "POV HANDS",
+      "POV ARMS",
+      "1st person view",
+      "view from behind"
+    ],
+    "pov_side_effects": [
+      "wide-angle / fisheye lens distortion",
+      "stretched or warped geometry",
+      "disproportionately large hands"
+    ],
+    "lens_artifact_negatives": [
+      "wide angle lens",
+      "fisheye lens",
+      "distorted perspective",
+      "warped"
+    ],
+    "anatomy_positives": [
+      "pov hands",
+      "hands in frame",
+      "arms reaching towards camera",
+      "arm extended towards the viewer",
+      "hand holding {object}",
+      "perfect 5-fingered hands",
+      "photorealistic hands",
+      "manicured nails",
+      "visible hands",
+      "extended arm"
+    ],
+    "anatomy_negatives": [
+      "extra limbs",
+      "floating limbs",
+      "missing limb",
+      "bad anatomy",
+      "malformed hands",
+      "mutated hands and fingers",
+      "poorly drawn hands",
+      "long neck",
+      "long body",
+      "extra fingers",
+      "deformed fingers"
+    ],
+    "depth_focus_positives": [
+      "shallow depth of field",
+      "cinematic bokeh",
+      "out of focus background",
+      "sharp focus",
+      "depth of field",
+      "vignette"
+    ],
+    "depth_focus_negatives": [
+      "deep depth of field",
+      "inaccurate skin color",
+      "muddy background"
+    ],
+    "composition_shots": {
+      "close-up": "close-up framing",
+      "medium shot": "medium shot framing",
+      "cowboy shot": "cowboy shot framing",
+      "low-angle shot": "low-angle shot",
+      "high-angle shot": "high-angle shot",
+      "over-the-shoulder": "over-the-shoulder view",
+      "eye-level": "eye-level shot, camera locked at eye level"
+    },
+    "composition_negatives": [
+      "cropped head",
+      "cut off",
+      "out of frame",
+      "(full body shot)",
+      "(character's body)"
+    ],
+    "lighting_terms": {
+      "dramatic": [
+        "dramatic lighting",
+        "moody atmosphere",
+        "low-key lighting"
+      ],
+      "natural": [
+        "natural window lighting",
+        "practical lights only",
+        "soft shadows"
+      ],
+      "volumetric": [
+        "volumetric lighting",
+        "god rays"
+      ],
+      "color": [
+        "teal shadows, warm highlights",
+        "cinematic color grading"
+      ],
+      "cinematic": [
+        "cinematic lighting",
+        "high budget",
+        "film grain",
+        "halation"
+      ]
+    },
+    "lighting_negatives": [
+      "flat lighting",
+      "harsh shadows",
+      "overexposed",
+      "underexposed",
+      "noisy"
+    ],
+    "cinematic_modifiers": [
+      "cinematic still frame",
+      "hyper-detailed",
+      "ultra-realistic",
+      "photorealistic",
+      "8k resolution",
+      "sharp focus",
+      "best quality",
+      "masterpiece",
+      "intricate details",
+      "film grain",
+      "halation",
+      "vignette",
+      "high ISO"
+    ],
+    "dictionary": {
+      "Perspective & View": {
+        "positive": [
+          "POV",
+          "point of view",
+          "first person view",
+          "eye-level shot",
+          "subjective camera",
+          "immersive",
+          "camera locked at eye level"
+        ],
+        "negative": [
+          "(full body shot)",
+          "(character's body)",
+          "(viewer's hands/arms)"
+        ]
+      },
+      "Anatomy & Foreground": {
+        "positive": [
+          "pov hands",
+          "hands in frame",
+          "arms reaching towards camera",
+          "pov hands grabbing",
+          "visible hands",
+          "extended arm",
+          "hand holding [object]"
+        ],
+        "negative": [
+          "extra limbs",
+          "floating limbs",
+          "missing limb",
+          "bad anatomy",
+          "malformed hands",
+          "long neck",
+          "long body"
+        ]
+      },
+      "Depth & Focus": {
+        "positive": [
+          "shallow depth of field",
+          "cinematic bokeh",
+          "out of focus background",
+          "sharp focus",
+          "depth of field",
+          "vignette"
+        ],
+        "negative": [
+          "deep depth of field",
+          "inaccurate skin color",
+          "muddy background"
+        ]
+      },
+      "Composition & Framing": {
+        "positive": [
+          "close-up",
+          "medium shot",
+          "cowboy shot",
+          "low-angle shot",
+          "high-angle shot",
+          "over-the-shoulder view"
+        ],
+        "negative": [
+          "cropped head",
+          "cut off",
+          "out of frame"
+        ]
+      },
+      "Lighting & Cinematics": {
+        "positive": [
+          "cinematic lighting",
+          "dramatic lighting",
+          "moody atmosphere",
+          "low-key lighting",
+          "volumetric lighting",
+          "film grain",
+          "high budget"
+        ],
+        "negative": [
+          "flat lighting",
+          "harsh shadows",
+          "overexposed",
+          "underexposed",
+          "noisy"
+        ]
+      },
+      "Realism & Quality": {
+        "positive": [
+          "hyper-detailed",
+          "ultra-realistic",
+          "photorealistic",
+          "8k resolution",
+          "best quality",
+          "masterpiece",
+          "intricate details"
+        ],
+        "negative": [
+          "drawing",
+          "painting",
+          "sketch",
+          "impressionist",
+          "blurry",
+          "ugly",
+          "deformed",
+          "text",
+          "watermark"
+        ]
+      }
+    },
+    "baseline_negatives": [
+      "bad anatomy",
+      "disfigured",
+      "extra limbs",
+      "mutated hands and fingers",
+      "poorly drawn hands",
+      "deformed",
+      "ugly",
+      "cloned face",
+      "duplicate",
+      "text"
+    ],
+    "hierarchy_steps": [
+      "1. Quality & Style Foundation",
+      "2. Subject & Action",
+      "3. POV & Composition",
+      "4. Foreground Elements",
+      "5. Background & Environment",
+      "6. Lighting & Mood"
+    ],
+    "guide_source": "knowledge_base/data/sd15_pov_guide.md"
+  },
+  "sd15_general": {
+    "clip_token_limit": 77,
+    "weight_rules": [
+      [
+        "(token)",
+        "1.1x emphasis"
+      ],
+      [
+        "(token:1.3)",
+        "explicit emphasis weight"
+      ],
+      [
+        "[token]",
+        "0.9x de-emphasis"
+      ],
+      [
+        "[token:0.8]",
+        "explicit de-emphasis weight"
+      ],
+      [
+        "(token:1.1:0.5)",
+        "emphasis + start/stop blend ratio"
+      ],
+      [
+        "token1 AND token2",
+        "per-token conditional switching (wildcard-like)"
+      ],
+      [
+        "token1 | token2",
+        "random choice between alternatives"
+      ],
+      [
+        "BREAK",
+        "shift attention to what follows (A1111)"
+      ],
+      [
+        "token1 token2",
+        "plain adjacency (default, usually best)"
+      ],
+      [
+        "underscored_tag",
+        "underscores become spaces; used in Danbooru style"
+      ],
+      [
+        "{{token}}",
+        "nested emphasis (multiplies weight)"
+      ],
+      [
+        "[from:to:step]",
+        "schedule: swap 'from' for 'to' at step N"
+      ]
+    ],
+    "weight_guidance": {
+      "emphasis": "1.1 - 1.2 (subtle boost, generally enough)",
+      "strong": "1.3 - 1.5 (use sparingly; >1.5 often degrades composition)",
+      "de-emphasis": "0.8 - 0.95 (suppress a term without removing it)",
+      "schedule": "[tag:0.9:10] keeps a tag for 10 steps then reduces it"
+    },
+    "lora_syntax": "<lora:lora_name:weight>",
+    "lora_examples": [
+      "<lora:add_detail:0.6>",
+      "<lora:char_style_v1:0.8>",
+      "<lora:cinematic_light:0.5>, <lora:char_style_v1:0.7>"
+    ],
+    "embedding_syntax": "(embedding:embedding_name:1.0)",
+    "hypernet_syntax": "<hypernet:hypernet_name:1.0>",
+    "lora_guide": [
+      {
+        "item": "weight range",
+        "value": "0.4 - 1.0 is the practical band; start at 0.6-0.8"
+      },
+      {
+        "item": "style LoRAs",
+        "value": "0.4 - 0.7 (prevent style bleed / over-saturation)"
+      },
+      {
+        "item": "character / concept LoRAs",
+        "value": "0.7 - 1.0 (raise until identity holds)"
+      },
+      {
+        "item": "detail / quality LoRAs",
+        "value": "0.3 - 0.6 (add_detail, detail_slider)"
+      },
+      {
+        "item": "trigger words",
+        "value": "append the LoRA's documented trigger token(s) to the positive prompt"
+      },
+      {
+        "item": "stacking",
+        "value": "2-3 LoRAs max; keep total weight sum <= ~1.5 to avoid collapse"
+      },
+      {
+        "item": "negative prompt",
+        "value": "add model-specific negatives (e.g. 'extra digits') when a LoRA degrades anatomy"
+      },
+      {
+        "item": "clip skip",
+        "value": "style LoRAs often prefer Clip skip 2"
+      },
+      {
+        "item": "CFG interplay",
+        "value": "high CFG (>=9) magnifies LoRA artifacts; prefer 6-8 with LoRAs"
+      }
+    ],
+    "lora_trigger_words": [
+      "Check the LoRA card for its exact trigger token; without it the LoRA is often inert.",
+      "Put the trigger token near the subject tokens, not at the very end.",
+      "If the LoRA has no trigger word, rely on the training subject name in natural language."
+    ],
+    "danbooru_style": {
+      "quality": [
+        "masterpiece",
+        "best quality",
+        "amazing quality",
+        "very aesthetic",
+        "absurdres"
+      ],
+      "negative": [
+        "lowres",
+        "bad anatomy",
+        "bad hands",
+        "error",
+        "missing fingers",
+        "extra digit",
+        "fewer digits",
+        "cropped",
+        "worst quality",
+        "low quality",
+        "jpeg artifacts",
+        "signature",
+        "watermark",
+        "username",
+        "blurry"
+      ],
+      "notes": [
+        "Tag order matters: quality tags first, then character, then clothing/pose/scene.",
+        "Underscores are optional (A1111 converts them to spaces).",
+        "Use '1girl'/'1boy' counts and explicit 'solo' when needed.",
+        "Emphasis works the same: (tag:1.2), [tag:0.8]."
+      ]
+    },
+    "photoreal_style": {
+      "quality": [
+        "photorealistic",
+        "RAW photo",
+        "8k uhd",
+        "ultra-detailed",
+        "sharp focus",
+        "natural skin texture",
+        "35mm photography",
+        "f/1.8"
+      ],
+      "negative": [
+        "cartoon",
+        "3d render",
+        "painting",
+        "drawing",
+        "illustration",
+        "anime",
+        "airbrushed",
+        "plastic skin",
+        "overexposed",
+        "oversaturated"
+      ],
+      "notes": [
+        "Prefer natural-language descriptions over comma-tag soup.",
+        "Camera + lens tokens (e.g. '85mm, f/1.8, shallow DOF') steer realism.",
+        "Keep the 77-token budget in mind; realism prompts saturate fast."
+      ]
+    },
+    "parameter_guidance": {
+      "cfg": "4-8 typical; 7 is the proven all-round default; >10 risks oversaturation & artifacts",
+      "steps": "20-30 typical; 28 is a proven default; hires pass: 12-20 extra steps",
+      "samplers": "DPM++ 2M Karras (default), Euler a (artistic), DDIM (fast), DPM++ SDE Karras (fine detail)",
+      "seed": "fix the seed to reproduce; random seeds to explore",
+      "hires_fix": "upscale 1.5-2x at 0.4-0.6 denoising strength after the base pass",
+      "resolution": "native 512x512/512x768/768x512 for SD1.5; use hires fix for larger outputs",
+      "clip_skip": "2 for many anime/style models; 1 for photorealistic checkpoints",
+      "negative_prompt_weight": "keep negative focused and concise; overloading it degrades quality",
+      "vae": "use the checkpoint's matching VAE (or a universal fp16 fix VAE) to avoid grey images"
+    },
+    "negative_packs": {
+      "generic": [
+        "bad anatomy",
+        "disfigured",
+        "extra limbs",
+        "mutated hands and fingers",
+        "poorly drawn hands",
+        "deformed",
+        "ugly",
+        "cloned face",
+        "duplicate",
+        "text"
+      ],
+      "anime": [
+        "lowres",
+        "bad anatomy",
+        "bad hands",
+        "error",
+        "missing fingers",
+        "extra digit",
+        "fewer digits",
+        "cropped",
+        "worst quality",
+        "low quality",
+        "jpeg artifacts",
+        "signature",
+        "watermark",
+        "username",
+        "blurry"
+      ],
+      "photoreal": [
+        "cartoon",
+        "3d render",
+        "painting",
+        "drawing",
+        "illustration",
+        "anime",
+        "airbrushed",
+        "plastic skin",
+        "overexposed",
+        "oversaturated",
+        "jpeg artifacts"
+      ],
+      "pov": [
+        "wide angle lens",
+        "fisheye lens",
+        "distorted perspective",
+        "warped",
+        "full body shot",
+        "(character's body)",
+        "extra limbs",
+        "malformed hands",
+        "cropped head",
+        "cut off"
+      ]
+    },
+    "aspect_ratios": {
+      "1:1": "512x512",
+      "2:3 portrait": "512x768",
+      "3:2 landscape": "768x512",
+      "9:16 vertical": "512x896 (via hires fix)",
+      "16:9 wide": "896x512 (via hires fix)"
+    }
+  }
+}

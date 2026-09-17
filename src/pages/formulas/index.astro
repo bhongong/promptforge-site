@@ -1,0 +1,85 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import { counts, formulas, systemPromptArchitecture } from '../../lib/content';
+import { u } from '../../lib/routes';
+import { breadcrumbSchema, itemListSchema } from '../../lib/schema';
+
+const title = '16 Prompting Formulas (CO-STAR, CRISPE, ReAct, CoT) — PromptForge';
+const description =
+  'The 16 prompting formulas that make AI output repeatable: CO-STAR, CRISPE, RTF, TAG, few-shot, chain-of-thought, ReAct, tree of thoughts, chain-of-verification and more.';
+
+const schemas = [
+  itemListSchema(
+    'Prompting formulas',
+    '/formulas/',
+    formulas.map((f) => ({ name: f.name, path: f.url_path })),
+  ),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Formulas', path: '/formulas/' },
+  ]),
+];
+---
+<Base title={title.slice(0, 79)} description={description.slice(0, 158)} path="/formulas/" schemas={schemas}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › Formulas
+    </nav>
+    <h1>The {counts.formulas} prompting formulas</h1>
+    <p class="lead">
+      A formula is a contract with the model: it forces the context, the constraint and the
+      output shape into the prompt instead of hoping the model infers them. Each page below
+      gives the skeleton and the situation it is built for.
+    </p>
+
+    <div class="grid">
+      {
+        formulas.map((formula) => (
+          <article class="card">
+            <h3>
+              <a href={u(formula.url_path)}>{formula.name}</a>
+            </h3>
+            <p>{formula.description}</p>
+            <p class="small muted">Use when: {formula.when_to_use}</p>
+          </article>
+        ))
+      }
+    </div>
+
+    <section>
+      <h2>The system-prompt architecture</h2>
+      <p class="muted">
+        Every formula plugs into the same six-part system-prompt skeleton — this is the
+        structure behind the highest-value paid pack.
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Layer</th>
+            <th>What it holds</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            Object.entries(systemPromptArchitecture).map(([layer, description]) => (
+              <tr>
+                <td>
+                  <code>{layer}</code>
+                </td>
+                <td>{description}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <CtaBlock
+      sku="P2"
+      placement="formulas-index"
+      heading="Get all 16 formulas with worked examples"
+      secondary={['P1', 'P3', 'B1']}
+    />
+  </div>
+</Base>

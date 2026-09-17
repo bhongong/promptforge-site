@@ -1,0 +1,24 @@
+---
+import Base from '../layouts/Base.astro';
+import { u } from '../lib/routes';
+
+const title = 'Page not found — PromptForge';
+const description =
+  'That page does not exist. Browse the prompt library, the prompting formulas or the Stable Diffusion POV guide instead.';
+---
+<Base title={title} description={description} path="/404/">
+  <div class="wrap">
+    <h1>404 — prompt not found</h1>
+    <p class="lead">
+      The page you asked for does not exist. Nothing was deleted from your copy of anything;
+      you probably just followed an old link.
+    </p>
+    <ul>
+      <li><a href={u('/prompts/')}>All prompt templates</a></li>
+      <li><a href={u('/formulas/')}>All 16 prompting formulas</a></li>
+      <li><a href={u('/pov-guide/')}>The SD1.5 cinematic POV guide</a></li>
+      <li><a href={u('/free-starter-kit/')}>The free Starter Kit</a></li>
+      <li><a href={u('/')}>Home</a></li>
+    </ul>
+  </div>
+</Base>

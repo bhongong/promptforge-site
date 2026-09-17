@@ -1,0 +1,195 @@
+---
+import Base from '../layouts/Base.astro';
+import PromptCard from '../components/PromptCard.astro';
+import CtaBlock from '../components/CtaBlock.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { SITE } from '../config';
+import {
+  categories,
+  counts,
+  featuredPrompts,
+  formulas,
+  generatedAt,
+  pov,
+  prompts,
+  robustnessRules,
+} from '../lib/content';
+import { u } from '../lib/routes';
+import {
+  breadcrumbSchema,
+  itemListSchema,
+  organizationSchema,
+  websiteSchema,
+} from '../lib/schema';
+
+const title = 'PromptForge — Proven Prompt Templates & Formulas';
+const description =
+  'Copy-and-paste prompt templates for ChatGPT, Claude and SD1.5 — plus 16 prompting formulas and a mastered cinematic POV guide. Every template is tested.';
+
+const schemas = [
+  websiteSchema(),
+  organizationSchema(),
+  itemListSchema(
+    'PromptForge prompt categories',
+    '/categories/',
+    categories.map((c) => ({ name: c.name, path: `/categories/${c.slug}/` })),
+  ),
+  breadcrumbSchema([{ name: 'Home', path: '/' }]),
+];
+---
+<Base title={title} description={description} path="/" schemas={schemas}>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">{SITE.tagline}</p>
+      <h1>Proven prompt templates for the AI work you actually ship</h1>
+      <p class="lead">
+        {counts.prompts} real, copy-and-paste prompt templates across {counts.categories}
+        categories, {counts.formulas} advanced prompting formulas, and a mastered Stable
+        Diffusion 1.5 cinematic POV guide. Each template ships with the constraints and
+        negative prompts that make it work — and the checklist we tested it against.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={u('/prompts/')}>Browse all {counts.prompts} prompt templates</a>
+        <a class="btn btn-ghost" href={u('/free-starter-kit/')}
+          >Free Starter Kit (5 prompts + 3 formulas)</a
+        >
+      </div>
+      <div class="hero-stats">
+        <div><strong>{counts.prompts}</strong><span>tested prompt templates</span></div>
+        <div><strong>{counts.categories}</strong><span>use-case categories</span></div>
+        <div><strong>{counts.formulas}</strong><span>prompting formulas</span></div>
+        <div><strong>{counts.robustness_rules}</strong><span>anti-hallucination rules</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <section>
+      <h2>Start with a prompt that already works</h2>
+      <p class="muted">
+        Every page below renders the full prompt text — no signup, no client-side rendering
+        tricks. Copy it, swap the <code>{'{placeholders}'}</code>, ship.
+      </p>
+      <div class="grid">
+        {featuredPrompts.map((prompt) => <PromptCard prompt={prompt} />)}
+      </div>
+      <p style="margin-top:1rem">
+        <a href={u('/prompts/')}>See all {counts.prompts} prompt templates →</a>
+      </p>
+    </section>
+
+    <section>
+      <h2>Browse by category</h2>
+      <div class="grid">
+        {
+          categories.map((category) => (
+            <article class="card">
+              <h3>
+                <a href={u(`/categories/${category.slug}/`)}>{category.name}</a>
+              </h3>
+              <p>{category.blurb}</p>
+              <p class="small muted">{category.prompt_slugs.length} templates</p>
+            </article>
+          ))
+        }
+      </div>
+    </section>
+
+    <section>
+      <h2>Advanced prompting formulas</h2>
+      <p class="muted">
+        The formula is the difference between a lucky output and a repeatable one. Each of
+        the {counts.formulas} formulas includes its skeleton and when to use it.
+      </p>
+      <ul class="list-links">
+        {
+          formulas.map((formula) => (
+            <li>
+              <a href={u(formula.url_path)}>{formula.name}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h2>The differentiator: the SD1.5 cinematic POV guide</h2>
+      <div class="grid-2">
+        <div>
+          <p>
+            Bare <code>POV</code> in a Stable Diffusion 1.5 prompt is a trap: it triggers
+            fisheye distortion, oversized hands and warped geometry. Our guide — written
+            from a 29 KB researched source and distilled into working prompt logic — gives
+            you the categorized positive/negative dictionary, the 6-step hierarchy and the
+            exact countermeasures that fix it.
+          </p>
+          <div class="btn-row">
+            <a class="btn" href={u('/pov-guide/')}>Read the POV guide</a>
+            <a class="btn btn-ghost" href={u('/prompts/sd15-pov-cinematic/')}
+              >Copy the POV template</a
+            >
+          </div>
+        </div>
+        <div>
+          <pre><code>{pov.hierarchy_steps.join('\n')}</code></pre>
+          <p class="small muted">
+            Build broad → specific in this order and the model stops guessing.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Why these prompts are different</h2>
+      <div class="grid-2">
+        <div>
+          <h3>Proven, not guessed</h3>
+          <p>
+            Each template carries the evaluation checklist it was tested against in our own
+            optimizer (multi-round critic loop, target score 85). You get the rubric, not
+            just the words.
+          </p>
+          <h3>Structured, not scraps</h3>
+          <p>
+            Real output contracts, format pins and negative prompts — the parts most
+            "prompt lists" leave out.
+          </p>
+        </div>
+        <div>
+          <h3>The robustness rules we bake into every prompt</h3>
+          <ul>
+            {robustnessRules.map((rule) => <li>{rule}</li>)}
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Get the free Starter Kit</h2>
+      <div class="grid-2">
+        <LeadForm placement="home-lead-form" id="home-lead-form" />
+        <div>
+          <p>
+            Five starter prompts (one from each beginner-friendly category), three essential
+            formulas — <strong>RTF</strong>, <strong>Chain-of-Thought</strong> and
+            <strong>Persona</strong> — and a one-page sheet on how to test whether a prompt
+            is actually working.
+          </p>
+          <p class="small muted">
+            Want everything at once? The full library, the formula masterclass, the Notion
+            system and the imagegen bundle are on the
+            <a href={u('/products/')}>products page</a>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <CtaBlock sku="P1" placement="home-footer" secondary={['P2', 'N1', 'B1']} />
+
+    <p class="small muted">
+      Content generated from the PromptForge knowledge base on {generatedAt.slice(0, 10)} ·
+      {prompts.length} prompt pages, {formulas.length} formula pages, {categories.length}
+      category pages.
+    </p>
+  </div>
+</Base>

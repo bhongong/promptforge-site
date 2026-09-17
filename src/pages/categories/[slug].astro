@@ -1,0 +1,111 @@
+---
+import Base from '../../layouts/Base.astro';
+import PromptCard from '../../components/PromptCard.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import {
+  categories,
+  formulas,
+  promptsInCategory,
+  type Category,
+} from '../../lib/content';
+import { u } from '../../lib/routes';
+import { breadcrumbSchema, itemListSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { slug: category.slug },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props as { category: Category };
+const items = promptsInCategory(category.slug);
+
+const relatedCategories = categories.filter((c) => c.slug !== category.slug).slice(0, 6);
+
+const formulaPicks = formulas.slice(0, 6);
+
+const isImage = category.key === 'image-sd15';
+const isFormulaHeavy = ['reasoning', 'agent', 'system-prompt', 'analysis', 'code'].includes(
+  category.key,
+);
+
+const title = `${category.name} — ${items.length} Prompt Templates`;
+const description = `${category.blurb} ${items.length} copy-and-paste templates, each with the constraints and negatives that make it reliable.`;
+
+const schemas = [
+  itemListSchema(
+    `${category.name} prompt templates`,
+    `/categories/${category.slug}/`,
+    items.map((p) => ({ name: p.title, path: p.url_path })),
+  ),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Categories', path: '/categories/' },
+    { name: category.name, path: `/categories/${category.slug}/` },
+  ]),
+];
+---
+<Base
+  title={title.slice(0, 79)}
+  description={description.slice(0, 158)}
+  path={`/categories/${category.slug}/`}
+  schemas={schemas}
+>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › <a href={u('/categories/')}>Categories</a> › {category.name}
+    </nav>
+
+    <h1>{category.name} prompt templates</h1>
+    <p class="lead">{category.blurb}</p>
+    <p class="small muted">{items.length} templates in this category.</p>
+
+    <div class="grid">
+      {items.map((prompt) => <PromptCard prompt={prompt} showCategory={false} />)}
+    </div>
+
+    <CtaBlock
+      sku={isImage ? 'B1' : isFormulaHeavy ? 'P2' : 'P1'}
+      placement={`category-${category.slug}`}
+      heading={isImage
+        ? 'Get the SD1.5 POV + LoRA image pack'
+        : 'Get the full library as a tested, printable pack'}
+      secondary={isImage ? ['P1', 'N1'] : ['P1', 'P3', 'N1']}
+    />
+
+    <section>
+      <h2>Other categories</h2>
+      <ul class="list-links">
+        {
+          relatedCategories.map((other) => (
+            <li>
+              <a href={u(`/categories/${other.slug}/`)}>{other.name}</a>{' '}
+              <span class="small muted">({other.prompt_slugs.length})</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h2>Formulas that pair with this category</h2>
+      <ul class="list-links">
+        {
+          formulaPicks.map((formula) => (
+            <li>
+              <a href={u(formula.url_path)}>{formula.name}</a>{' '}
+              <span class="small muted">— {formula.when_to_use}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h2>Free starter pack</h2>
+      <LeadForm placement={`category-${category.slug}-lead`} id={`lead-${category.slug}`} compact />
+    </section>
+  </div>
+</Base>

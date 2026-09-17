@@ -1,0 +1,156 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { prompts, promptsBySlug, robustnessRules, type Prompt } from '../../lib/content';
+import { u } from '../../lib/routes';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return prompts.map((prompt) => ({ params: { slug: prompt.slug }, props: { prompt } }));
+}
+
+const { prompt } = Astro.props as { prompt: Prompt };
+
+const placeholders = Array.from(
+  new Set((prompt.template.match(/\{[a-z0-9_]+\}/g) || []).map((m) => m.slice(1, -1))),
+);
+
+const related = prompt.related
+  .map((slug) => promptsBySlug[slug])
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const isImage = prompt.category_key === 'image-sd15';
+const primarySku = isImage ? 'B1' : 'P1';
+
+const schemas = [
+  articleSchema({
+    headline: prompt.seo_title,
+    description: prompt.meta_description,
+    path: prompt.url_path,
+    section: prompt.category_name,
+    keywords: [...prompt.tags, prompt.category_key, 'prompt template'],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Prompts', path: '/prompts/' },
+    { name: prompt.category_name, path: `/categories/${prompt.category_slug}/` },
+    { name: prompt.title, path: prompt.url_path },
+  ]),
+];
+---
+<Base
+  title={prompt.seo_title}
+  description={prompt.meta_description}
+  path={prompt.url_path}
+  ogType="article"
+  schemas={schemas}
+>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › <a href={u('/prompts/')}>Prompts</a> ›
+      <a href={u(`/categories/${prompt.category_slug}/`)}>{prompt.category_name}</a>
+    </nav>
+
+    <article>
+      <p class="eyebrow">{prompt.category_name}</p>
+      <h1>{prompt.title}</h1>
+      <p class="lead">{prompt.description}</p>
+
+      <h2>The prompt</h2>
+      <pre><code>{prompt.template}</code></pre>
+
+      {
+        placeholders.length > 0 && (
+          <>
+            <h2>What to swap in</h2>
+            <table>
+              <thead>
+                <tr>
+                  <th>Placeholder</th>
+                  <th>What it means</th>
+                </tr>
+              </thead>
+              <tbody>
+                {placeholders.map((name) => (
+                  <tr>
+                    <td>
+                      <code>{`{${name}}`}</code>
+                    </td>
+                    <td>{name.replace(/_/g, ' ')}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            <p class="small muted">
+              Keep the placeholders short and concrete. If a value is unknown, say so
+              explicitly in the prompt rather than leaving the model to guess.
+            </p>
+          </>
+        )
+      }
+
+      <h2>How to use it</h2>
+      <ol>
+        <li>Copy the template exactly, including punctuation and structure.</li>
+        <li>
+          Replace each <code>{'{placeholder}'}</code> with your own value — never delete a
+          placeholder, replace it.
+        </li>
+        <li>
+          Paste it as a <em>system prompt</em> for reusable work, or as the user message for
+          one-off tasks.
+        </li>
+        <li>
+          Check the output against the rubric below. If it fails a line, tighten the prompt
+          rather than re-rolling the model.
+        </li>
+      </ol>
+
+      <h2>Test it before you trust it</h2>
+      <ul>
+        {robustnessRules.map((rule) => <li>{rule}</li>)}
+      </ul>
+      <p class="small muted">
+        These are the robustness rules baked into every PromptForge template — they are also
+        the rubric the paid packs ship with.
+      </p>
+
+      {
+        related.length > 0 && (
+          <>
+            <h2>Related prompts</h2>
+            <ul>
+              {related.map((other) => (
+                <li>
+                  <a href={u(other.url_path)}>{other.title}</a>{' '}
+                  <span class="small muted">— {other.description}</span>
+                </li>
+              ))}
+            </ul>
+          </>
+        )
+      }
+
+      <p>
+        More in this category:{' '}
+        <a href={u(`/categories/${prompt.category_slug}/`)}>{prompt.category_name}</a> ·
+        <a href={u('/prompts/')}>all prompt templates</a>
+      </p>
+    </article>
+
+    <CtaBlock
+      sku={primarySku}
+      placement={`prompt-${prompt.slug}`}
+      heading={isImage
+        ? 'Get the full SD1.5 POV + LoRA image pack'
+        : 'Get all 32 templates as a tested, printable pack'}
+      secondary={isImage ? ['P1', 'P2', 'N1'] : ['P2', 'P3', 'N1']}
+    />
+
+    <section>
+      <h2>Prefer the free starter pack?</h2>
+      <LeadForm placement={`prompt-${prompt.slug}-lead`} id={`lead-${prompt.slug}`} compact />
+    </section>
+  </div>
+</Base>

@@ -1,0 +1,118 @@
+---
+import Base from '../../layouts/Base.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import LeadForm from '../../components/LeadForm.astro';
+import { formulas, type Formula } from '../../lib/content';
+import { u } from '../../lib/routes';
+import { articleSchema, breadcrumbSchema } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return formulas.map((formula) => ({ params: { slug: formula.slug }, props: { formula } }));
+}
+
+const { formula } = Astro.props as { formula: Formula };
+
+const siblings = formulas.filter((f) => f.slug !== formula.slug);
+
+const schemas = [
+  articleSchema({
+    headline: formula.seo_title,
+    description: formula.meta_description,
+    path: formula.url_path,
+    section: 'Prompting formulas',
+    keywords: [formula.name, 'prompt formula', 'prompting technique'],
+  }),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Formulas', path: '/formulas/' },
+    { name: formula.name, path: formula.url_path },
+  ]),
+];
+---
+<Base
+  title={formula.seo_title}
+  description={formula.meta_description}
+  path={formula.url_path}
+  ogType="article"
+  schemas={schemas}
+>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › <a href={u('/formulas/')}>Formulas</a> › {formula.name}
+    </nav>
+
+    <article>
+      <p class="eyebrow">Prompting formula</p>
+      <h1>The {formula.name} formula</h1>
+      <p class="lead">{formula.description}</p>
+
+      <h2>Skeleton</h2>
+      <pre><code>{formula.skeleton}</code></pre>
+
+      <h2>When to use it</h2>
+      <p>{formula.when_to_use}</p>
+
+      <h2>How to apply it without breaking it</h2>
+      <ol>
+        <li>
+          Fill every slot. A formula with a missing slot silently degrades into a generic
+          prompt — the model will fill the gap with its own assumptions.
+        </li>
+        <li>
+          Keep the ordering. Structure carries meaning; moving the output contract to the
+          front of a long prompt is the most common reason a good formula fails.
+        </li>
+        <li>
+          Pin the output shape explicitly (format, length, delimiters) rather than
+          describing it in prose.
+        </li>
+        <li>
+          Test with three inputs: a typical one, an edge case, and one where the correct
+          answer is "insufficient context".
+        </li>
+      </ol>
+
+      <h2>Pairs well with</h2>
+      <ul>
+        <li>
+          <a href={u('/prompts/')}>Prompt templates</a> — the formula is the frame, the
+          template is the content.
+        </li>
+        <li>
+          <a href={u('/categories/system-prompt/')}>System prompts</a> — where formulas become
+          reusable products.
+        </li>
+        <li>
+          <a href={u('/prompts/reasoning-math-cot/')}>Reasoning templates</a> — for the
+          reasoning-family formulas.
+        </li>
+      </ul>
+    </article>
+
+    <CtaBlock
+      sku="P2"
+      placement={`formula-${formula.slug}`}
+      heading="16 formulas, worked examples, and 8 anti-hallucination rules"
+      secondary={['P1', 'P3']}
+    />
+
+    <section>
+      <h2>Other formulas</h2>
+      <ul class="list-links">
+        {
+          siblings.map((other) => (
+            <li>
+              <a href={u(other.url_path)}>{other.name}</a>{' '}
+              <span class="small muted">— {other.when_to_use}</span>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section>
+      <h2>Free starter pack</h2>
+      <LeadForm placement={`formula-${formula.slug}-lead`} id={`lead-${formula.slug}`} compact />
+    </section>
+  </div>
+</Base>

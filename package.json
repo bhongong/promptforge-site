@@ -1,0 +1,22 @@
+{
+  "name": "promptforge-site",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PromptForge SEO prompt-library site (static Astro build).",
+  "scripts": {
+    "content": "python scripts/export_content.py",
+    "build:full": "npm run content && astro build",
+    "build": "astro build",
+    "dev": "astro dev",
+    "preview": "astro preview",
+    "check": "astro check",
+    "verify": "python scripts/verify_site.py",
+    "serve": "astro preview --host 127.0.0.1 --port 4321"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "astro": "^5.18.2",
+    "typescript": "^5.9.3"
+  }
+}

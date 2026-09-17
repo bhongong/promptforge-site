@@ -1,0 +1,65 @@
+---
+import Base from '../../layouts/Base.astro';
+import PromptCard from '../../components/PromptCard.astro';
+import CtaBlock from '../../components/CtaBlock.astro';
+import { categories, counts, prompts } from '../../lib/content';
+import { u } from '../../lib/routes';
+import { breadcrumbSchema, itemListSchema } from '../../lib/schema';
+
+const title = 'All Prompt Templates — PromptForge Library';
+const description = `Browse all ${counts.prompts} proven prompt templates across ${counts.categories} categories: system, function, code, writing, analysis, reasoning, marketing and SD1.5 image prompts.`;
+
+const schemas = [
+  itemListSchema(
+    'PromptForge prompt library',
+    '/prompts/',
+    prompts.map((p) => ({ name: p.title, path: p.url_path })),
+  ),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Prompts', path: '/prompts/' },
+  ]),
+];
+---
+<Base title={title} description={description} path="/prompts/" schemas={schemas}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › Prompts
+    </nav>
+    <h1>All {counts.prompts} prompt templates</h1>
+    <p class="muted">
+      Grouped by category. Every page shows the full template text, what to swap in, and
+      which paid pack it belongs to.
+    </p>
+
+    {
+      categories.map((category) => {
+        const items = category.prompt_slugs
+          .map((slug) => prompts.find((p) => p.slug === slug))
+          .filter((p) => p !== undefined);
+        if (!items.length) return null;
+        return (
+          <section>
+            <h2>
+              {category.name}{' '}
+              <span class="small muted">({items.length})</span>
+            </h2>
+            <p class="muted small">{category.blurb}</p>
+            <div class="grid">
+              {items.map((prompt) => (
+                <PromptCard prompt={prompt} showCategory={false} />
+              ))}
+            </div>
+            <p style="margin-top:0.75rem">
+              <a href={u(`/categories/${category.slug}/`)}>
+                All {category.name.toLowerCase()} prompts →
+              </a>
+            </p>
+          </section>
+        );
+      })
+    }
+
+    <CtaBlock sku="P1" placement="prompts-index" secondary={['P2', 'B1']} />
+  </div>
+</Base>

@@ -1,0 +1,130 @@
+---
+import Base from '../layouts/Base.astro';
+import LeadForm from '../components/LeadForm.astro';
+import { SKUS, SITE, track, type SkuKey } from '../config';
+import { u } from '../lib/routes';
+import { breadcrumbSchema, itemListSchema, productSchema } from '../lib/schema';
+
+const title = 'PromptForge Products, Packs & Bundles';
+const description =
+  'Every PromptForge product: the free Starter Kit, the 32-template library, the 16-formula masterclass, the Notion system and the Image Studio bundle.';
+
+const order: SkuKey[] = ['LM', 'P1', 'P2', 'P3', 'N1', 'B1'];
+
+const schemas = [
+  itemListSchema(
+    'PromptForge products',
+    '/products/',
+    order.map((key) => ({ name: SKUS[key].name, path: '/products/' })),
+  ),
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'Products', path: '/products/' },
+  ]),
+  ...order
+    .filter((key) => SKUS[key].price !== 'Free')
+    .map((key) =>
+      productSchema({
+        name: SKUS[key].name,
+        description: SKUS[key].blurb,
+        price: SKUS[key].price,
+        url: track(SKUS[key].url, 'products-page'),
+      }),
+    ),
+];
+---
+<Base title={title} description={description} path="/products/" schemas={schemas}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › Products
+    </nav>
+    <h1>PromptForge products</h1>
+    <p class="lead">
+      One free pack, then four paid packs and a bundle. Every pack ships the template
+      <em>and</em> the constraints, negatives and checklist it was tested against — that is
+      the difference between a prompt list and a prompt product.
+    </p>
+
+    <div class="grid">
+      {
+        order.map((key) => {
+          const sku = SKUS[key];
+          return (
+            <article class="card">
+              {sku.badge && <p class="eyebrow" style="margin-bottom:0.35rem">{sku.badge}</p>}
+              <h3>{sku.name}</h3>
+              <p>{sku.blurb}</p>
+              <p class="small muted">
+                <strong>{sku.price}</strong> · {sku.format}
+              </p>
+              <div class="btn-row">
+                <a
+                  class="btn"
+                  href={track(sku.url, `products-${key.toLowerCase()}`)}
+                  rel="noopener"
+                  data-sku={key}
+                >
+                  {sku.price === 'Free' ? 'Get it free' : `Buy for ${sku.price}`}
+                </a>
+                {key === 'LM' && (
+                  <a class="btn btn-ghost" href={u('/free-starter-kit/')}>What's inside</a>
+                )}
+              </div>
+            </article>
+          );
+        })
+      }
+    </div>
+
+    <section>
+      <h2>The bundle math</h2>
+      <p>
+        Library ($12) + Masterclass ($19) + Notion System ($19) bought separately is $50.
+        <strong>Image Studio is $39</strong> and includes all of that plus the SD1.5 POV
+        dictionary, the 6-step hierarchy, the negative-prompt packs, LoRA weights and four
+        image prompt templates — a $11 saving, and the only pack with the image knowledge in
+        it.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={track(SKUS.B1.url, 'products-bundle-math')} rel="noopener" data-sku="B1">
+          Get Image Studio — $39
+        </a>
+        <a class="btn btn-ghost" href={u('/pov-guide/')}>Read the POV guide first</a>
+      </div>
+    </section>
+
+    <section>
+      <h2>What every paid pack includes</h2>
+      <ul>
+        <li>Copy-paste ready templates — PDF for reading, .txt/.md for pasting.</li>
+        <li>The constraints, negative prompts and format pins that make each one reliable.</li>
+        <li>The evaluation checklist each template was tested against.</li>
+        <li>
+          A personal, non-transferable, single-user license — including commercial client
+          work. See the <a href={u('/license/')}>license page</a>.
+        </li>
+      </ul>
+      <p class="small muted">
+        The underlying prompt-optimizer engine is not distributed — you are buying the
+        content, not a binary.
+      </p>
+    </section>
+
+    <section>
+      <h2>Free Starter Kit</h2>
+      <LeadForm placement="products-lead" id="lead-products" compact />
+    </section>
+
+    {
+      !SITE.PLACEHOLDERS_LIVE && (
+        <div class="notice">
+          <strong>Launch note:</strong> checkout links currently point at tracked placeholder
+          URLs that follow the final storefront slugs (`promptforge.gumroad.com`). Each link
+          already carries <code>utm_source</code>, <code>utm_medium</code> and{' '}
+          <code>utm_content</code> for the exact placement, so attribution is live from the
+          first real click. See <code>site/CONFIG.md</code> for the one-line switch.
+        </div>
+      )
+    }
+  </div>
+</Base>

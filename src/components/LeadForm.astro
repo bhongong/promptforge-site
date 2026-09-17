@@ -1,0 +1,125 @@
+---
+import { SITE } from '../config';
+import { u } from '../lib/routes';
+
+interface Props {
+  placement: string;
+  id?: string;
+  compact?: boolean;
+}
+
+const { placement, id = 'lead-form', compact = false } = Astro.props;
+const campaign = 'free-starter-kit';
+---
+<form
+  class="lead-form"
+  id={id}
+  method="post"
+  action={SITE.leadEndpoint || '#'}
+  data-endpoint={SITE.leadEndpoint}
+  data-placement={placement}
+  data-magnet={SITE.leadMagnetUrl}
+  novalidate
+>
+  <h3 style="margin-top:0">
+    {compact ? 'Get the free Starter Kit' : 'Free: The PromptForge Starter Kit'}
+  </h3>
+  <p class="small muted">
+    5 starter prompts + 3 essential formulas (RTF, Chain-of-Thought, Persona) + the
+    one-page "how to test a prompt" sheet. No spam, unsubscribe anytime.
+  </p>
+
+  <label for={`${id}-email`}>Email address</label>
+  <input
+    id={`${id}-email`}
+    name="email"
+    type="email"
+    required
+    autocomplete="email"
+    placeholder="you@company.com"
+  />
+
+  {!compact && (
+    <>
+      <label for={`${id}-name`}>First name <span class="muted">(optional)</span></label>
+      <input id={`${id}-name`} name="first_name" type="text" autocomplete="given-name" />
+    </>
+  )}
+
+  <!-- honeypot: bots fill this, humans never see it -->
+  <div style="position:absolute;left:-9999px" aria-hidden="true">
+    <label for={`${id}-company`}>Company</label>
+    <input id={`${id}-company`} name="company" type="text" tabindex="-1" autocomplete="off" />
+  </div>
+
+  <input type="hidden" name="utm_source" value="site" />
+  <input type="hidden" name="utm_medium" value="lead-magnet" />
+  <input type="hidden" name="utm_campaign" value={campaign} />
+  <input type="hidden" name="utm_content" value={placement} />
+  <input type="hidden" name="sku" value="LM" />
+
+  <button class="btn" type="submit">Send me the Starter Kit</button>
+  <p class="form-status" data-role="status" role="status" aria-live="polite"></p>
+  <p class="hint">
+    Delivered instantly. You can also
+    <a href={u('/free-starter-kit/')}>see what's inside first</a>.
+  </p>
+</form>
+
+<script define:vars={{ endpoint: SITE.leadEndpoint, formId: id }}>
+  (() => {
+    // @ts-ignore -- `formId` is injected by Astro's define:vars at build time
+    const form = document.getElementById(formId);
+    if (!form) return;
+    const status = form.querySelector('[data-role="status"]');
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const email = /** @type {HTMLInputElement} */ (form.querySelector('input[name="email"]'));
+      const honeypot = /** @type {HTMLInputElement} */ (form.querySelector('input[name="company"]'));
+      if (!status) return;
+
+      if (honeypot && honeypot.value) {
+        status.dataset.state = 'ok';
+        status.textContent = 'Thanks — check your inbox.';
+        return;
+      }
+      if (!email.value || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) {
+        status.dataset.state = 'error';
+        status.textContent = 'Please enter a valid email address.';
+        email.focus();
+        return;
+      }
+
+      const payload = Object.fromEntries(new FormData(form).entries());
+
+      if (!endpoint) {
+        // Preview mode: the endpoint is wired but not yet pointed at a list
+        // provider (Buttondown / Kit / Gumroad). Nothing is sent anywhere.
+        status.dataset.state = 'pending';
+        status.textContent =
+          'Preview mode — the capture endpoint is not configured yet. Your email was NOT sent. See /CONFIG.md.';
+        return;
+      }
+
+      status.dataset.state = 'pending';
+      status.textContent = 'Sending…';
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        status.dataset.state = 'ok';
+        status.textContent = 'Done — the Starter Kit is on its way to your inbox.';
+        form.reset();
+      } catch (error) {
+        status.dataset.state = 'error';
+        status.textContent =
+          'Something went wrong. Please retry, or email ' +
+          'hello@promptforge.dev and we will send it manually.';
+      }
+    });
+  })();
+</script>

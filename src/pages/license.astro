@@ -1,0 +1,76 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config';
+import { u } from '../lib/routes';
+import { breadcrumbSchema } from '../lib/schema';
+
+const title = 'License — PromptForge Product Terms';
+const description =
+  'PromptForge license: personal, single-user, and usable in your own commercial client work. No resale, no repackaging, no redistribution of the files.';
+
+const schemas = [
+  breadcrumbSchema([
+    { name: 'Home', path: '/' },
+    { name: 'License', path: '/license/' },
+  ]),
+];
+---
+<Base title={title} description={description} path="/license/" schemas={schemas}>
+  <div class="wrap">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href={u('/')}>Home</a> › License
+    </nav>
+
+    <h1>License</h1>
+    <p class="lead">
+      The same terms apply to every PromptForge pack, and they are printed on the first page
+      of every delivered file.
+    </p>
+
+    <section>
+      <h2>You may</h2>
+      <ul>
+        <li>Use the prompts in any of your own AI or creative work, including paid client work.</li>
+        <li>Adapt and rewrite the templates for your own projects.</li>
+        <li>Keep a personal copy on your own devices.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>You may not</h2>
+      <ul>
+        <li>Resell, repackage or redistribute the deliverable files as a competing product.</li>
+        <li>Share the pack files or the Notion duplicate link with other people.</li>
+        <li>Claim authorship of the compiled library, formulas or guides.</li>
+        <li>Redistribute the packs inside a course, template bundle or team account.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Scope & delivery</h2>
+      <ul>
+        <li><strong>Licence type:</strong> personal, non-transferable, single user.</li>
+        <li><strong>Delivery:</strong> digital download / duplicate link, delivered at purchase.</li>
+        <li>
+          <strong>Not included:</strong> the prompt-optimizer engine or any binary — the
+          products are the content deliverables only.
+        </li>
+        <li>
+          <strong>Updates:</strong> packs are versioned; corrections to a pack you own are
+          delivered at no extra cost.
+        </li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Site content</h2>
+      <p>
+        The free templates and guides published on this site are provided for the same use —
+        build with them, do not repackage them as a product.
+      </p>
+      <p class="small muted">
+        Questions about licensing: {SITE.email}
+      </p>
+    </section>
+  </div>
+</Base>
