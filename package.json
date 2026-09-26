@@ -9,14 +9,25 @@
     "build:full": "npm run content && astro build",
     "build": "astro build",
     "dev": "astro dev",
-    "preview": "astro preview",
+    "preview": "npm run build && wrangler dev",
     "check": "astro check",
     "verify": "python scripts/verify_site.py",
-    "serve": "astro preview --host 127.0.0.1 --port 4321"
+    "serve": "astro preview --host 127.0.0.1 --port 4321",
+    "test:e2e": "playwright test",
+    "test:e2e:desktop": "playwright test --project=desktop-chromium",
+    "test:e2e:report": "playwright show-report tests/report/html",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.63.0",
+    "@types/node": "^26.6.1",
     "astro": "^5.18.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "wrangler": "^4.141.0"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "12"
   }
 }

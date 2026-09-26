@@ -16,8 +16,8 @@ export const SITE = {
     'The PromptForge Library — 30 Proven Prompt Templates Engineered for Real Results',
   description:
     'Copy-and-paste prompt templates, 16 prompting formulas and a mastered Stable Diffusion 1.5 POV guide — every template ships with the negatives and the checklist it was tested against.',
-  /** Absolute canonical root of the deployed site (GitHub Pages project URL). */
-  baseUrl: 'https://bhongong.github.io/promptforge-site',
+  /** Absolute canonical root of the deployed site. */
+  baseUrl: 'https://promptforge.ainovation.top',
   repoUrl: 'https://github.com/bhongong/promptforge-site',
   email: 'hello@promptforge.dev',
   /** Set true once the Gumroad store is live to hide the placeholder notice. */

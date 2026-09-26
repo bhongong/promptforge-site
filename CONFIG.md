@@ -62,7 +62,9 @@ consent). To add privacy-friendly analytics, drop the Umami/Plausible snippet in
 
 ## 5. Domain + hosting
 
-Currently GitHub Pages (project site, path-based URL). For `promptforge.com`:
+Currently GitHub Pages (project site, path-based URL) — this **is** the canonical origin until a custom
+domain the founder actually owns is registered. (`promptforge.com` and `promptforge.co` are held by
+third parties — see `../docs/CANONICAL-LINKS.md` D2; do not point anything at them.) For a custom domain:
 
 1. Register the domain and point it at GitHub Pages (or move to Cloudflare Pages / Netlify).
 2. Set `base: '/'` in `astro.config.mjs`, update `site` and `SITE.baseUrl`.

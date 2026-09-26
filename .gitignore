@@ -11,3 +11,16 @@ dist/
 .DS_Store
 Thumbs.db
 *.log
+
+# frontend test artifacts (the screenshot set is uploaded to the kanban card
+# and indexed in tests/screenshots/manifest.json, not committed here)
+tests/.artifacts/
+tests/report/
+tests/screenshots/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example

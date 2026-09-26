@@ -1,15 +1,16 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 
-// GitHub Pages project site: https://bhongong.github.io/promptforge-site/
-// To move to a custom domain (promptforge.com), set BASE to '/' and update
-// src/config.ts -> SITE.baseUrl, then rebuild + redeploy.
-const BASE = '/promptforge-site';
+import cloudflare from "@astrojs/cloudflare";
+
+// Custom domain for promptforge.ainovation.top (Cloudflare Pages)
+const BASE = '/';
 
 export default defineConfig({
-  site: 'https://bhongong.github.io',
+  site: 'https://promptforge.ainovation.top',
   base: BASE,
   trailingSlash: 'always',
   build: { format: 'directory', inlineStylesheets: 'auto' },
   compressHTML: true,
+  adapter: cloudflare()
 });
